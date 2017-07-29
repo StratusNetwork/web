@@ -3,9 +3,8 @@ class Server
         extend ActiveSupport::Concern
 
         included do
-            # ID of this server's DNS record in Cloudflare's API. They look like integers,
-            # but Cloudflare returns them as strings, so we treat them as strings.
-            field :dns_record_id, :type => String
+            # ID of this server's DNS record in DigitalOcean's API.
+            field :dns_record_id, :type => Integer
 
             # True when this server currently has a public DNS record. The server must be
             # ready to accept connections whenever this flag is set.
@@ -159,7 +158,7 @@ class Server
                 zone = Zone.cached(Rails.configuration.servers[:dns][:zone])
 
                 if self.dns_record_id
-                    unless rec = zone.records.find{|r| r.rec_id == self.dns_record_id }
+                    unless rec = zone.records.find{|r| r.id == self.dns_record_id }
                         raise "No DNS record for #{self.name} with red_id=#{self.dns_record_id}"
                     end
                 else
@@ -167,14 +166,14 @@ class Server
                     domains = [:disabled, :enabled].map{|prefix| self.secret_domain(prefix) }.compact
 
                     if rec = zone.records.find{|r| self.ip == r.content && domains.include?(r.name) }
-                        Rails.logger.info "Found matching DNS record rec_id=#{rec.rec_id} name=#{rec.name}"
+                        Rails.logger.info "Found matching DNS record id=#{rec.id} name=#{rec.name}"
                     else
                         # Record still not found, make a new one (but don't save it)
                         Rails.logger.info "No DNS record found, creating a new one"
-                        rec = zone.build_record(content: self.ip, type: 'A', ttl: Rails.configuration.servers[:dns][:ttl])
+                        rec = Zone::Record.new(zone, {data: self.ip, type: 'A', ttl: Rails.configuration.servers[:dns][:ttl]})
                     end
 
-                    self.dns_record_id = rec.rec_id
+                    self.dns_record_id = rec.id
                 end
 
                 rec
@@ -186,7 +185,7 @@ class Server
             rec = self.dns_record
             rec.name = domain
             rec.save
-            self.dns_record_id = rec.rec_id if rec.rec_id
+            self.dns_record_id = rec.id if rec.id
             Rails.logger.info "Assigned #{self.datacenter} #{self.name} (#{self.ip}) to domain #{domain}"
         end
 
