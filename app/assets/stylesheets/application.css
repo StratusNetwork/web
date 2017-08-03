@@ -697,3 +697,49 @@ pre.about-me, .about-me pre {
 .navbar-default {
     background-color: #ffffff;
 }
+
+#breathing {
+    height: 100%,
+    width: 100%,
+    -webkit-animation: breathing 20s ease-out infinite normal;
+    animation: breathing 20s ease-out infinite normal;
+    -webkit-font-smoothing: antialiased;
+    }
+
+
+@-webkit-keyframes breathing {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  50% {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  50% {
+   -webkit-transform: scale(1.05);
+   -ms-transform: scale(1.05);
+   transform: scale(1.05);
+ }
+
+  100% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+}
