@@ -11,9 +11,9 @@
                     %li{:class => (sort == @sort ? 'active' : nil)}
                         %a{:href => reports_path + '?sort=' + sort}
                             = sort.capitalize
-        %h1
+        %h1.text-design
             Reports
-            %small That pertain to you
+            %small.text-design That pertain to you
     .row
         .col-md-12
             - if @reports.exists?

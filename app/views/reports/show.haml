@@ -2,7 +2,7 @@
 
 %section
     .page-header
-        %h1
+        %h2.text-design
             Report for
             = link_to_user(@report.reported)
             %small
@@ -83,7 +83,7 @@
                     %strong This report has been escalated.
                     Only higher staff may provide assistance.
     .page-header
-        %h2
+        %h2.text-design
             = succeed "'s" do
                 = link_to_user(@report.reported)
             other punishments
@@ -131,7 +131,7 @@
                     %center
                         %p No reports to display.
     .page-header.clearfix
-        %h2 History
+        %h2.text-design History
         .pull-right.btn-group
             - if @can[:report][:comment]
                 %a.action.btn.btn-default{:href => '#action', :data => {:toggle => 'modal', :type => 'comment'}} Add Comment
