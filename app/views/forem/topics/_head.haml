@@ -7,10 +7,10 @@
     &raquo;
     = link_to topic.forum.title, forum_path(topic.forum)
 .page-header{:style => 'margin: 0px;'}
-    %h3
+    %h3.text-design
         %a{href: topic_path(topic)}
             = render_topic_title(topic, emoji_size: 20)
-        %small
+        %small.text-design
             by
             = link_to_user topic.user
             = render :partial => 'forem/topics/icons', :locals => {:topic => topic} unless topic.forum.simple_forum_style

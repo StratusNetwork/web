@@ -746,3 +746,7 @@ pre.about-me, .about-me pre {
 .splash-tile {
     background-color: #ffffff;
 }
+
+.text-design {
+    font-weight: bold;
+}

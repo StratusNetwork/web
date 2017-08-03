@@ -9,9 +9,9 @@
                     %button.btn.btn-warning.btn-sm.visible-xs.visible-sm{:onclick => "$(this).toggleClass('active');", :data => {:toggle => "collapse", :target => "#subforum-list"}}
                         %i.fa.fa-th-list
                         Subforums
-                %h1{:style => 'margin-top: 0'}
+                %h2.text-design{:style => 'margin-top: 0'}
                     Forums
-                    %small Socialize with your friends
+                    %small.text-design Socialize with your friends
             .col-md-3
                 = render :partial => 'forem/search'
     .row
@@ -26,7 +26,7 @@
                 = yield :main
             - else
                 .forum-header
-                    %h3 What's New
+                    %h3.text-design What's New
                 - pagination = paginate @whatsnew unless @whatsnew.nil?
                 - @whatsnew = Forem::TopicsHelper.filter_topics(current_user, @whatsnew)
                 - if !(@whatsnew.nil? || @whatsnew.count < 1)
