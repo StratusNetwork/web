@@ -750,3 +750,21 @@ pre.about-me, .about-me pre {
 .text-design {
     font-weight: bold;
 }
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: #555;
+  cursor: default;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+}
+
+.well {
+    background-color: #ffffff;
+}
+
+pre {
+    background-color: #ffffff;
+}
