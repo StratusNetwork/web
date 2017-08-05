@@ -305,12 +305,16 @@ ul.dropdown-menu {
 .forum-header {
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
+    margin-top: 0px;
     margin-bottom: 10px;
 }
 
 .forum-header h3 {
     font-weight: bold;
-    margin-top: 0;
+}
+
+.forum-header small {
+    font-weight: bold;
 }
 
 .posts {
