@@ -3,7 +3,7 @@
 
 %section.appeal
     .page-header
-        %h2.text-design
+        %h2
             Appeal for
             = link_to_user(@appeal.punished)
             %small= @appeal.status
@@ -108,7 +108,7 @@
                     %center
                         %p No reports to display.
     .page-header.clearfix
-        %h2.text-design History
+        %h2 History
         .pull-right.btn-group
             = render :partial => 'actions', :locals => {:can => @can}
     .row

@@ -2,7 +2,7 @@
 
 - content_for :main do
     .forum-header
-        %h3.text-design= @title
+        %h3= @title
     - pagination = paginate @topics
     - @topics = Forem::TopicsHelper.filter_topics(current_user, @topics)
     - if @topics.count > 0

@@ -10,7 +10,7 @@
         %input{type: "hidden", name: "price", id: "price-field", value: @package && @package.price}
             .row
                 .col-md-9
-                    %h2.text-design Ready to play Stratus your own way?
+                    %h2 Ready to play Stratus your own way?
                     %img.pull-right{src: asset_path("shop/package.png"), width: "150"}
                     %p.lead
                         As a premium player, you can team up with your friends, join full servers, and play more ranked matches every day.
@@ -54,7 +54,7 @@
                         %hr
             .row
                 .col-md-2
-                    %h2.text-design Step 1
+                    %h2 Step 1
                     Choose a player
                 .col-md-10{style: "padding-top: 20px;"}
                     = user_select_field('', 'recipient_id', @recipient, disabled: !user_signed_in?)
@@ -64,7 +64,7 @@
                     %hr
             .row
                 .col-md-2
-                    %h2.text-design Step 2
+                    %h2 Step 2
                     %p Choose a package
                     %p Upgrade later by paying the difference
                 - @packages.each do |package|
@@ -91,7 +91,7 @@
                     %hr
             .row
                 .col-md-2
-                    %h2.text-design Step 3
+                    %h2 Step 3
                     %p.visible-xs.visible-sm
                         Click PayPal button
                         %strong or

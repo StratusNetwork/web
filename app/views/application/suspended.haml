@@ -2,7 +2,7 @@
 
 %section
     .page-header
-        %h2.text-design
+        %h2
             = @player.username
             %small Account Suspended
 
@@ -12,6 +12,6 @@
                 = avatar_for(@player, 168)
         .col-md-9
             .alert.alert-block.alert-danger
-                %h4.text-design Account Suspended
+                %h4 Account Suspended
                 This account is suspended. If you believe this is in error, please contact us at
                 %a{:href => "mailto:#{ORG::EMAIL}"} #{ORG::EMAIL}

@@ -7,7 +7,7 @@
     });
 %section
     .page-header
-        %h2.text-design
+        %h2
             The Maps
             %small A large variety of unique maps
     .row
@@ -26,7 +26,7 @@
                     = button_to download_map_path(@map), class: 'btn btn-success pull-right-md' do
                         %i.fa.fa-download
                         Download
-            %h1.text-design{style: "margin-top: 0;"}
+            %h1{style: "margin-top: 0;"}
                 = @map.name
                 %small= @map.version.join('.')
             %b= render partial: 'authors', locals: {map: @map, limit: 999}

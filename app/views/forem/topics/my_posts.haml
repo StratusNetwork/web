@@ -2,7 +2,7 @@
 
 - content_for :main do
     .forum-header
-        %h3.text-design= @title
+        %h3= @title
     - pagination = paginate @posts
     - if @posts.count > 0
         = pagination

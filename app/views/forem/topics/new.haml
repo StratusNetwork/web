@@ -2,9 +2,9 @@
 
 - content_for :main do
     .page-header{:style => "margin: 0px;"}
-        %h3.text-design
+        %h3
             New Topic
-            %small.text-design= @topic.forum.category.name + ": " + @topic.forum.title
+            %small= @topic.forum.category.name + ": " + @topic.forum.title
     %br
     = render 'form'
 
