@@ -55,6 +55,7 @@ gem 'braintree'                         # Payment processor
 gem 'geoip'                             # IP lookup utility
 gem 'droplet_kit'                       # Digital Ocean client
 gem 'lockup'                            # Password protect development/staging websites
+gem 'docker-swarm-api'                  # Docker swarm orchestration
 gem 'net-http-pipeline'
 gem 'crowdin-api', github: 'OvercastNetwork/crowdin-api', branch: 'master'
 
@@ -75,7 +76,7 @@ group :production, :staging do
 end
 
 group :development do
-    gem 'eventmachine', :github => 'eventmachine/eventmachine' # Thin depend, need latest for Windows
+    #gem 'eventmachine', :github => 'eventmachine/eventmachine' # Thin depend, need latest for Windows
     gem 'thin'                          # Web server
     gem 'better_errors'
     gem 'binding_of_caller'

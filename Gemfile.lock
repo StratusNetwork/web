@@ -32,12 +32,6 @@ GIT
     ruby-string-match-scorer (0.1.0)
 
 GIT
-  remote: git://github.com/eventmachine/eventmachine.git
-  revision: 4de7d0e00fe87819840ba7c7c91e7ed09b85467c
-  specs:
-    eventmachine (1.0.4)
-
-GIT
   remote: git://github.com/jedediah/print_members.git
   revision: d70e7bdac745f44de39510b134800c0c8c692142
   specs:
@@ -101,6 +95,10 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.9)
     bcrypt (3.1.9-x64-mingw32)
     better_errors (2.0.0)
@@ -120,6 +118,8 @@ GEM
     cloudflare (2.0.2)
       json (~> 1)
     coderay (1.1.0)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -144,11 +144,28 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    docker-api (1.33.6)
+      excon (>= 0.38.0)
+      json
+    docker-swarm-api (1.2.5)
+      docker-api (>= 1.33.1)
+      json
+      retry_block (>= 1.2.0)
     dogapi (1.14.0)
       json (>= 1.5.1)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
+    droplet_kit (2.2.1)
+      activesupport (> 3.0, < 6)
+      faraday (~> 0.9)
+      kartograph (~> 0.2.3)
+      resource_kit (~> 0.1.5)
+      virtus (~> 1.0.3)
+    equalizer (0.0.11)
     erubis (2.7.0)
+    eventmachine (1.2.5)
+    eventmachine (1.2.5-x64-mingw32)
+    excon (0.58.0)
     execjs (2.6.0)
     extlib (0.9.16)
     factory_girl (4.5.0)
@@ -194,6 +211,7 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
+    ice_nine (0.11.2)
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -202,10 +220,13 @@ GEM
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kartograph (0.2.4)
     kgio (2.9.2)
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.5)
+    lockup (1.4)
+      rails (>= 3, < 6)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     macaddr (1.7.1)
@@ -312,6 +333,8 @@ GEM
     redcarpet (3.2.2)
     redis (3.2.0)
     ref (1.0.5)
+    resource_kit (0.1.6)
+      addressable (>= 2.3.6, < 3.0.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rest-client (1.8.0)
@@ -324,6 +347,7 @@ GEM
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
     retriable (1.4.1)
+    retry_block (1.2.0)
     ruby-progressbar (1.7.5)
     sanitize (2.1.0)
       nokogiri (>= 1.4.4)
@@ -392,6 +416,11 @@ GEM
     uuid (2.3.7)
       macaddr (~> 1.0)
     uuidtools (2.1.5)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.3)
       rack (>= 1.0)
     workflow (1.0.0)
@@ -418,8 +447,9 @@ DEPENDENCIES
   crowdin-api!
   dante
   devise
+  docker-swarm-api
   dogapi
-  eventmachine!
+  droplet_kit
   factory_girl_rails (~> 4.0)
   gemoji
   geoip
@@ -432,6 +462,7 @@ DEPENDENCIES
   json
   jwt
   kaminari
+  lockup
   minitest
   minitest-reporters (>= 0.5.0)
   mocha

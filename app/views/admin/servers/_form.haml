@@ -149,6 +149,37 @@
                 %label.col-md-4.control-label DNS Record
                 .col-md-7
                     = f.text_field :dns_record_, :disabled => true, :value => "#{@dns_record.name} #{@dns_record.ttl} #{@dns_record.type} #{@dns_record.data}", :class => "form-control"
+    - if Swarm.enabled?
+        %h4 Orchestration
+        .form-horizontal
+            .form-group
+                .checkbox.col-md-7.col-md-offset-4
+                    %label
+                        = f.check_box :orchestration_enabled
+                        Enabled
+            .form-group
+                .checkbox.col-md-7.col-md-offset-4
+                    %label
+                        = f.check_box :orchestration_ephemeral
+                        Ephemeral
+            .form-group
+                %label.col-md-4.control-label Stack
+                .col-md-7
+                    = f.text_field :orchestration_stack_file, :class => "form-control"
+            .form-group
+                %label.col-md-4.control-label Node
+                .col-md-7
+                    = f.select :orchestration_node_id, [nil, *Swarm.hosts], {}, :class => "form-control"
+            - if @server.deployed?
+                .form-group
+                    %label.col-md-4.control-label Services
+                    .col-md-7
+                        = f.text_field :orchestration_services, :value => @server.stack_services.map{|service| "#{service.name.gsub(@server.stack_name + '_', '')}"}.join(", "), :disabled => true, :class => "form-control"
+            - if @server.orchestration_error
+                .form-group
+                    %label.col-md-4.control-label Error
+                    .col-md-7
+                        = f.text_area :orchestration_error, :disabled => true, :class => "form-control"
     %h4 Dynamics
     .form-horizontal
         = f.fields_for :dynamics do |dynamics|

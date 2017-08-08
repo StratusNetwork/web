@@ -26,6 +26,7 @@ class Server
     include Maps
     include Matches
     include Operators
+    include Orchestration
     include MinecraftPermissions
     include PlayerCounts
     include PublicVisibility
