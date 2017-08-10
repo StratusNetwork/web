@@ -76,15 +76,15 @@
                     .hidden-sm.hidden-xs
                         = join_safe(@kills[0...16].map{|kill| avatar_for(kill.victim_obj, 32, hover: true, link: true)})
                     .name kills
-                    .number{:rel => (big_stat(kills) ? 'tooltip' : ''), :title => "#{kills} kills", :data => {:placement => 'top'}}
-                        = big_stat(kills) ? number_to_human(kills, :format => '%n%u', :units => { :thousand => 'k' }, :precision => 4) : kills
+                    .number{:rel => (mega_stat(kills) ? 'tooltip' : ''), :title => "#{kills} kills", :data => {:placement => 'top'}}
+                        = mega_stat(kills) ? number_to_human(kills, :format => '%n%u', :units => { :thousand => 'k' }, :precision => 4) : kills
                 .col-md-4
                     - deaths = @stats.pretty_stat(:deaths)
                     .hidden-sm.hidden-xs
                         = join_safe(@deaths[0...16].map{|death| avatar_for(death.killer_obj, 32, hover: true, link: true)})
                     .name deaths
-                    .number{:rel => (big_stat(deaths) ? 'tooltip' : ''), :title => "#{deaths} deaths", :data => {:placement => 'top'}}
-                        = big_stat(deaths) ? number_to_human(deaths, :format => '%n%u', :units => { :thousand => 'k' }, :precision => 4) : deaths
+                    .number{:rel => (mega_stat(deaths) ? 'tooltip' : ''), :title => "#{deaths} deaths", :data => {:placement => 'top'}}
+                        = mega_stat(deaths) ? number_to_human(deaths, :format => '%n%u', :units => { :thousand => 'k' }, :precision => 4) : deaths
                 .col-md-4
                     .hidden-sm.hidden-xs
                         = join_safe(@friends.map{|friend| avatar_for(friend, 32, hover: true, link: true, glow: true) })
@@ -97,18 +97,27 @@
         .col-md-4.col-sm-6.col-xs-12
             .stats
                 .well
-                    %h2
-                        = @stats.pretty_stat(:kd)
-                        %small kd
-                    %h2
-                        = @stats.pretty_stat(:kk)
-                        %small kk
-                    %h2
-                        = @player.raindrops
-                        %small Droplets
+                    .rank>
+                        .number 
+                            = PlayerStat.for_period('eternity').for_user(@player).rank('kills')
+                            %sup>= PlayerStat.for_period('eternity').for_user(@player).rank('kills').ordinalize[-2..-1]
+                    .unqualified
+                        %a{href: url_for(controller: 'users', action: 'stats')}
+                            overall in kills
                     .rule
-                    %a{href: "#more_stats", data: {toggle: "modal"}}
-                        %h4.text-primary More Stats
+                    %div
+                        .total>
+                            .number= @stats.pretty_stat(:kd).round(1)
+                            .name kd
+                        .total>
+                            .number= @stats.pretty_stat(:kk).round(1)
+                            .name kk
+                        .total>
+                            .number= big_stat(@player.raindrops) ? number_to_human(@player.raindrops, :format => '%n%u', :units => { :thousand => 'k', :million => 'm' }, :precision => 3) : @player.raindrops
+                            .name droplets
+                        .total>
+                            .number= @objectives.size
+                            .name objectives
 %section
     .row
         .col-md-12
@@ -429,30 +438,3 @@
                                                                 - if current_user_safe.has_permission?('misc','ipban','edit', true)
                                                                     %a{:href => new_admin_ipban_path(:ip => alt.mc_last_sign_in_ip, :description => @player.username), :class => "pull-right btn btn-xs btn-danger"}
                                                                         %i.fa.fa-ban
-.modal.fade#more_stats
-    .modal-dialog
-        .modal-content
-            .modal-header
-                %button.close{:data => {:dismiss => "modal"}} &times;
-                %h3.modal-title
-                    More Stats
-            .modal-body
-                %h3
-                    = "First joined on " + vague_format_time(@intial_join)
-                %h2
-                    = @days_here
-                    %small days since first seen
-                %h2
-                    = @hours_played
-                    %small hours played
-                %h2
-                    = @teams_joined
-                    %small teams joined
-                %h2
-                    = @forum_posts
-                    %small forum posts
-                %h2
-                    = @topics_created
-                    %small topics created
-                .modal-footer
-                    %a.btn.btn-default{:href => "#", :data => {:dismiss => "modal"}} Close
