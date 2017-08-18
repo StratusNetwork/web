@@ -23,7 +23,7 @@
                                 = variant_label(variant)
                 - if @map.can_download?
                     -# Use POST to prevent denial of service from forged requests
-                    = button_to download_map_path(@map), class: 'btn btn-success pull-right-md' do
+                    = button_to download_map_path(@map), class: 'btn btn-primary pull-right-md' do
                         %i.fa.fa-download
                         Download
             %h1{style: "margin-top: 0;"}
@@ -43,7 +43,7 @@
                     %strong= @map.objective
         .col-md-4
             %img.thumbnail.center-block.img-responsive{src: @map.thumbnail_url}
-    - if @show_map_ratings
+    -# - if @show_map_ratings
         .row
             .col-md-12
                 %ul.nav.nav-tabs#ratings-tabs
