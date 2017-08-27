@@ -23,24 +23,17 @@ class Transaction
     end
     field :status, type: Integer, default: Status::UNPAYED, allow_nil: false
 
-    # emails
     field :email, type: String
     field :email_sent, type: Boolean
 
     class Error < Exception; end
 
     embeds_one :purchase, store_as: 'package', class_name: 'Purchase'
-
-    # Providers (legacy)
-    field :paypal, default: {}.freeze # {token, payer_id, transaction_id}
-    field :google, default: {}.freeze # {token, order_number}
-
-    # TODO: move the other providers to this field, if we ever use them again
     embeds_one :processor, class_name: 'Transaction::Processor'
 
     attr_accessible :total, :description, :status, :note, :ip,
                     :email, :email_sent, :user, :user_id,
-                    :package, :paypal, :google, :processor
+                    :package, :processor
 
     scope :package, -> (package) { where('package.id' => package.id) }
     scope :recipient, -> (user) { where('package.user_id' => user.id) }

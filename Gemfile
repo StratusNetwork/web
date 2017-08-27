@@ -51,7 +51,9 @@ gem 'select2-rails'                     # Select2 jQuery widget, Rails integrati
 gem 'dogapi'                            # DataDog API client
 gem 'chunky_png'                        # Image processor (used for skins)
 gem 'google-api-client'                 # Client for all things Google
-gem 'braintree'                         # Payment processor
+gem 'braintree'                         # Old payment processor
+gem 'stripe'                            # New payment processor
+gem 'accepton'
 gem 'geoip'                             # IP lookup utility
 gem 'droplet_kit'                       # Digital Ocean client
 gem 'lockup'                            # Password protect development/staging websites
@@ -75,7 +77,7 @@ group :production, :staging do
 end
 
 group :development do
-    gem 'eventmachine', :github => 'eventmachine/eventmachine' # Thin depend, need latest for Windows
+    #gem 'eventmachine', :github => 'eventmachine/eventmachine' # Thin depend, need latest for Windows
     gem 'thin'                          # Web server
     gem 'better_errors'
     gem 'binding_of_caller'

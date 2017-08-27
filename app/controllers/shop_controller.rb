@@ -14,16 +14,6 @@ class ShopController < ApplicationController
         else
             @recipient = current_user
         end
-
-        if current_user
-            begin
-                @braintree_client_token = Braintree::ClientToken.generate(customer_id: current_user.id.to_s)
-            rescue ArgumentError => ex
-                raise unless ex.message =~ /customer/i # Assume this is customer not found
-            end
-        end
-
-        @braintree_client_token ||= Braintree::ClientToken.generate
     end
 
     def status
@@ -58,12 +48,13 @@ class ShopController < ApplicationController
         recipient = model_param(User, :recipient_id, required: true)
         package = Package.available.find{|p| p.id.to_s == params[:package_id] } or return not_found
         price = required_param(:price)
-        nonce = required_param(:payment_method_nonce)
+        email = required_param(:email)
+        token = required_param(:token)
 
         session[:shop] = {package_id: package.id, recipient_id: recipient.id}
 
         transaction = Transaction.new_package_purchase(
-            processor: Transaction::Braintree.new(payment_method_nonce: nonce),
+            processor: Transaction::Stripe.new(email: email, token: token),
             package: package,
             price: price,
             recipient: recipient,

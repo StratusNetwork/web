@@ -32,7 +32,7 @@
                                     Colorful badge in-game
                                 %li
                                     %i.fa.fa-check
-                                    Setnext and mutation tokens
+                                    Map and mutation tokens
                                 %li
                                     %i.fa.fa-check
                                     Discord music features
@@ -66,7 +66,7 @@
                 .col-md-2
                     %h2 Step 2
                     %p Choose a package
-                    %p Upgrade later by paying the difference
+                    %p You can upgrade later
                 - @packages.each do |package|
                     .col-md-2{style: "padding-bottom: 10px;"}
                         .package-select{"data-package-id" => package.id, "data-price" => package.price, class: ('selected' if @package == package)}
@@ -92,19 +92,13 @@
             .row
                 .col-md-2
                     %h2 Step 3
-                    %p.visible-xs.visible-sm
-                        Click PayPal button
-                        %strong or
-                        enter credit/debit card
-                    .visible-md.visible-lg
-                        Click PayPal button
-                        %br
-                        %strong &nbsp; or
-                        %br
-                        Enter credit/debit card
+                    %p
+                        Click buy button
                 .col-md-10
-                    #payment-container
+                    -#payment-container
+                    %script.accepton-button{src: "https://staging-js.accepton.com/scripts/accepton.js", data: {:'public-key' => 'pkey_018d891bf8954014', :token => 'txn_cecc4fa02f3b32d638694702a0c482d5', :target => 'accepton-button'}}
                     %input.buy-button.btn.btn-primary.btn-lg.disabled{type: "submit", value: "Buy Now"}
+                    -#%script.stripe-button{src: "https://checkout.stripe.com/checkout.js", data: {name: ORG::NAME, zip_code: true, billing_address: true, allow_remember_me: false, key: Rails.configuration.stripe[:stripe_publishable_key]}}
             .row
                 .col-md-12
                     %hr

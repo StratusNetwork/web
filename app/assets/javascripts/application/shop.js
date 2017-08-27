@@ -23,6 +23,7 @@ function updateForm() {
 
         $('#package-field').val(elSelected.data('package-id'));
         $('#price-field').val(elSelected.data('price'));
+
     } else {
         elBuyButton[0].disabled = true;
         elBuyButton.addClass('disabled');
@@ -81,22 +82,12 @@ function updatePackages() {
 }
 
 $(document).ready(function() {
-    if(window.braintree) {
-        braintree.setup(window.braintreeClientToken, "dropin", {
-            container: "payment-container",
-            form: "shop-form",
-            paypal: {
-                singleUse: true
-            }
-        });
+    window.userSearchWidget = $('#_recipient_id')[0];
+    window.userSearchWidget.onchange = updatePackages;
 
-        window.userSearchWidget = $('#_recipient_id')[0];
-        window.userSearchWidget.onchange = updatePackages;
+    $('.package-select').click(function(e) {
+        selectPackage($(e.currentTarget).data('package-id'));
+    });
 
-        $('.package-select').click(function(e) {
-            selectPackage($(e.currentTarget).data('package-id'));
-        });
-
-        updatePackages();
-    }
+    updatePackages();
 });
