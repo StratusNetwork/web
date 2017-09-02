@@ -33,6 +33,10 @@ class Server
             api_property :datacenter, :ip, :current_port
             api_synthetic :box, :box_id   # TODO: rename the Java field
 
+            api_synthetic :domain do
+                connect_to
+            end
+
             before_event :startup do
                 self.current_port = current_port.to_i
                 self.current_port = port if current_port == 0
