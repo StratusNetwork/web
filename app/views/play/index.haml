@@ -26,16 +26,46 @@
                  2. On the main menu, click the Multiplayer button.
                  3. Click on "Add Server" and name the server (can be anything you want). For the Server Address, copy the above IP and paste it in.
                  4. Click done. After that, a server should appear. Double click on it and you will join the lobby.
-                 5. Once in the lobby, you can use the navigator in your inventory to select a server, join it and start playing!
+                 5. Once in the lobby, you can use the navigator in your inventory to select a server, join it and you will be teleported to that server.
+                 6. After you get teleported to the server you can start participating in the match by using the team selector in your inventory or typing the "/join" command.
+
         .col-md-6
-            :markdown
+            .row
+                :markdown
 
-                ### **Supported Versions**
+                    ### **Supported Versions**
 
-                 - 1.12.1
-                 - 1.12
-                 - 1.11
-                 - 1.10
-                 - 1.9
-                 - 1.8
-                 - 1.7
+                .col-md-6
+                    :markdown
+
+                        - 1.12.1
+                        - 1.12
+                        - 1.11
+                        - 1.10
+
+                .col-md-6
+                    :markdown
+
+                        - 1.9
+                        - 1.8
+                        - 1.7
+
+            .row
+                :markdown
+
+                    ### **Regional Proxies**
+
+                    Depending on your location and ISP, you might have better ping by using one of our proxies. These may or may not reduce your ping to the server by routing your internet traffic more efficiently.
+
+                .well.well-sm
+                    %table.table-condensed{:style => "font-style: italic"}
+                        %tbody
+                            %tr
+                                %td{:width => "50%"} America
+                                %td us.stratus.network
+                            %tr
+                                %td Europe
+                                %td eu.stratus.network
+                            %tr
+                                %td Australia
+                                %td au.stratus.network
