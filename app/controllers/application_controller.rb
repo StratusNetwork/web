@@ -149,6 +149,15 @@ class ApplicationController < CommonController
 
     helper_method :nav_path, :nav_link, :can_navigate_to?, :render_navigation
 
+    def privacy
+    end
+
+    def refund
+    end
+
+    def terms
+    end
+
     def donate
         return redirect_to shop_path
     end
