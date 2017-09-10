@@ -17,7 +17,7 @@ PGM::Application.configure do
     config.assets.compress = true
 
     # Fallback to assets pipeline if a precompiled asset is missed
-    config.assets.compile = false
+    config.assets.compile = true
 
     # Generate digests for assets URLs
     config.assets.digest = true
@@ -57,4 +57,11 @@ PGM::Application.configure do
 
     # Send deprecation notices to registered listeners
     config.active_support.deprecation = :notify
+
+    # Custom mailing settings
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = { address: ENV['SMTP_HOST'] || 'localhost', port: 25 }
+    config.action_mailer.default_url_options = { :host => ENV['DEVISE_HOST'] || ORG::DOMAIN }
+
 end
