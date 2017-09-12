@@ -6,6 +6,8 @@ PGM::Application.configure do
 
     config.eager_load = true
 
+    config.force_ssl = ENV['SSL'] != nil
+
     # Full error reports are disabled and caching is turned on
     config.consider_all_requests_local       = false
     config.action_controller.perform_caching = true
