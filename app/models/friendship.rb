@@ -105,7 +105,8 @@ class Friendship
 
     class << self
         def max_default_friends
-            16
+            # 16
+            100000
         end
 
         def user_ids(except: nil)
