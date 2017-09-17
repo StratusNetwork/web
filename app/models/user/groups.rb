@@ -43,15 +43,7 @@ class User
         end
 
         def badge_memberships
-            premium = false
-            active_memberships.reduce([]) do |list, m|
-                if m.group.premium?
-                    next list if premium
-                    premium = true
-                end
-                list << m
-                list
-            end
+            active_memberships
         end
 
         def badge_groups
