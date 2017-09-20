@@ -2,12 +2,9 @@ $(document).ready(function () {
     var submit = function(user) {
         var url = "/stats";
 
-        var game = $('#playerstats-game').val();
         url += "?time=" + $('#playerstats-time').val();
-        url += "&game=" + game;
-        if(game != 'global') {
-            url += "&sort=" + $('#playerstats-sort').val();
-        }
+        url += "&game=" + $('#playerstats-game').val();
+        url += "&sort=" + $('#playerstats-sort').val();
 
         if(user) {
             var username = $('#search-username').val();
