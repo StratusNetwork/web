@@ -39,7 +39,7 @@ class AppealsController < ApplicationController
         @punishments = Punishment.desc(:date).punished(current_user).appealable
         types = []
         Punishment::Type::ALL.each do |type|
-            types << type if Punishment.can_index?(['type', type], 'own', current_user)
+            types << type if Punishment.can_index?(['type', type.downcase], 'own', current_user)
         end
         @punishments = !types.empty? ? @punishments.where(:type => {'$in' => types}) : nil
         return redirect_to_back appeals_path, :alert => 'You do not have permission to view any of your punishments which are eligible for appeal.' if @punishments.nil?
