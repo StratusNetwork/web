@@ -784,3 +784,7 @@ pre {
 .table-striped > tbody > tr:nth-of-type(odd) {
   background-color: #ffffff;
 }
+
+.front-title {
+    color: #ffffff;
+}

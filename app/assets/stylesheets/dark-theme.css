@@ -1,0 +1,64 @@
+body {
+    background-color: #212121;
+}
+
+.navbar-default {
+    background-color: #121212;
+    border-color: #212121;
+}
+
+.bs-docs-social {
+    background-color: #121212;
+    border-color: #212121;
+}
+
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    color: #bdbdbd;
+}
+
+a {
+    color: #eeeeee;
+}
+
+li {
+    color: #bdbdbd;
+}
+
+hr {
+    border-color: #616161;
+}
+
+.nav-tabs,
+.page-header {
+    border-color: #616161;
+}
+
+.well {
+    background-color: #121212;
+    border-color: #212121;
+}
+
+.connect-header {
+    color: #bdbdbd;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border-color: #424242;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #424242;
+}
+
+th,
+td {
+    color: #bdbdbd;
+}
