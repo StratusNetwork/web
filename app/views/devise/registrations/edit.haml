@@ -63,6 +63,9 @@
                 .form-group{style: "margin-top: 16px;"}
                     = f.label :time_zone_name, 'Time Zone'
                     = f.time_zone_select :time_zone_name, TZInfo::Timezone.all.sort, { :model => TZInfo::Timezone, :disabled => (@disabled.include? :time_zone_name) }, :class => 'form-control'
+                .form-group{style: "margin-top: 16px;"}
+                    = f.label :web_theme, 'BETA: Website Themes'
+                    = f.select :web_theme, ["Default", "Dark Mode"], { :model => String }, :class => 'form-control'
                 .form-group
                     = f.submit "Update", :class => "btn btn-primary"
     .row
