@@ -43,6 +43,7 @@ class User
     include Stats
     include Teams
     include Teleporting
+    include Themes
     include Tickets
     include TntLicense
     include TokenAuthenticatable
