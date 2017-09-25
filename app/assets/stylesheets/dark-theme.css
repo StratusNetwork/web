@@ -2,16 +2,6 @@ body {
     background-color: #212121;
 }
 
-.navbar-default {
-    background-color: #121212;
-    border-color: #212121;
-}
-
-.bs-docs-social {
-    background-color: #121212;
-    border-color: #212121;
-}
-
 div,
 h1,
 h2,
@@ -28,16 +18,88 @@ a {
 }
 
 li {
-    color: #bdbdbd;
+    color: #bdbdbd !important;
 }
 
 hr {
     border-color: #616161;
 }
 
-.nav-tabs,
+pre {
+    background-color: #121212;
+    color: #bdbdbd;
+    border: #212121;
+}
+
+blockquote {
+    border-left: 5px solid #bdbdbd;
+}
+
+.navbar-default {
+    background-color: #121212;
+    border-color: #212121;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #bdbdbd !important;
+    background-color: #212121 !important;
+}
+
+.dropdown-menu {
+    background-color: #212121;
+}
+
+.dropdown-menu > li > a {
+    color: #bdbdbd !important;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    background-color: #121212;
+    color: #bdbdbd;
+}
+
+.nav-tabs {
+    border-color: #616161;
+}
+
+.nav-tabs > li.active > a {
+    background-color: #121212 !important;
+    color: #bdbdbd !important;
+    border-color: #616161;
+}
+
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+    background-color: #121212;
+    color: #bdbdbd;
+    border-color: #212121;
+}
+
+.btn-default {
+    background-color: #121212;
+    color: #bdbdbd;
+    border-color: #212121;
+}
+
+.btn-default:hover,
+.btn-default:focus {
+    background-color: #212121;
+    color: #bdbdbd;
+    border-color: #121212;
+}
+
 .page-header {
     border-color: #616161;
+}
+
+.bs-docs-social {
+    background-color: #121212;
+    border-color: #212121;
 }
 
 .well {
@@ -49,16 +111,16 @@ hr {
     color: #bdbdbd;
 }
 
-.table-bordered th,
-.table-bordered td {
+th,
+td {
+    color: #bdbdbd;
+}
+
+.table-bordered > th,
+.table-bordered > td {
     border-color: #424242;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
     background-color: #424242;
-}
-
-th,
-td {
-    color: #bdbdbd;
 }
