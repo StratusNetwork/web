@@ -34,7 +34,7 @@ PGM::Application.configure do
     config.query_logging = false
 
     config.site_base_url = "https://#{ORG::DOMAIN}"
-    config.avatar_base_url = "https://#{ENV['AVATAR_HOST'] || ORG::DOMAIN}:#{ENV['AVATAR_PORT'] || '3005'}"
+    config.avatar_base_url = "https://#{ORG::DOMAIN}:3005"
 
     # Use localhost for avatar URLs
     config.local_avatars = false
