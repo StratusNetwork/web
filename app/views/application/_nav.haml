@@ -6,7 +6,7 @@
                     %span.badge= @alert_count
                 %span.fa.fa-bars
             %a.navbar-brand{:href => main_app.root_path}
-                - if current_user.dark_theme?
+                - if current_user_safe.dark_theme?
                     %img.pull-left{:src => image_path('logo_dark_theme.png'), :height => 34}
                 - else
                     %img.pull-left{:src => image_path('logo.png'), :height => 34}
