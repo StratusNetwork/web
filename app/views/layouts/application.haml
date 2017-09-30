@@ -15,7 +15,7 @@
         - if content_for? :noindex
             %meta{:name => "robots", :content => "noindex"}
         = stylesheet_link_tag "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css", "application", "//fonts.googleapis.com/css?family=Noto+Sans:700,400,300", "//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        - if current_user.dark_theme?
+        - if user_signed_in? && current_user.dark_theme?
             = stylesheet_link_tag "dark-theme"
         = javascript_include_tag "libraries", "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js", "application"
         = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.0/bootstrap3-typeahead.min.js"
