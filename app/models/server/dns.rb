@@ -3,8 +3,8 @@ class Server
         extend ActiveSupport::Concern
 
         included do
-            # ID of this server's DNS record in DigitalOcean's API.
-            field :dns_record_id, :type => Integer
+            # ID of this server's DNS record in Cloudflare's API.
+            field :dns_record_id
 
             # True when this server currently has a public DNS record. The server must be
             # ready to accept connections whenever this flag is set.
@@ -92,7 +92,7 @@ class Server
             # The public domain used to connect to the given datacenter
             def public_domain(datacenter)
                 zone = Rails.configuration.servers[:dns][:zone]
-                "#{datacenter.downcase}"
+                "#{datacenter.downcase}.#{zone}"
             end
 
             # The internal domain used for the given datacenter and prefix
@@ -156,51 +156,42 @@ class Server
             self.on_domain?(domain) if domain
         end
 
-        # Get or create this server's DNS record from DigitalOcean's API as a Zone::Record object
+        # Get or create this server's DNS record from Cloudflare's API as a Zone::Record object
         def dns_record
             if self.ip =~ Ipban::IP_REGEX
                 zone = Zone.cached(Rails.configuration.servers[:dns][:zone])
 
                 if self.dns_record_id
-                    if rec = zone.records.find{|r| r.id == self.dns_record_id }
-                        rec
-                    else
-                        Rails.logger.info "No DNS record for #{self.name} with id=#{self.dns_record_id}"
+                    unless rec = zone.records.find{|r| r.rec_id == self.dns_record_id }
+                        raise "No DNS record for #{self.name} with red_id=#{self.dns_record_id}"
                     end
-                end
-
-                # Server has no DNS record yet, try to find one by IP or create a new one
-                domains = [:disabled, :enabled].map{|prefix| self.secret_domain(prefix) }.compact
-
-                if rec = zone.records.find{|r| self.ip == r.data && domains.include?(r.name) }
-                    Rails.logger.info "Found matching DNS record id=#{rec.id} name=#{rec.name}"
                 else
-                    # Record still not found, make a new one (but don't save it)
+                    # Record not found, make a new one (but don't save it)
                     Rails.logger.info "No DNS record found, creating a new one"
-                    rec = Zone::Record.new(zone, {data: self.ip, type: 'A', ttl: Rails.configuration.servers[:dns][:ttl]})
-                end
+                    rec = zone.build_record(content: self.ip, type: 'A', ttl: Rails.configuration.servers[:dns][:ttl])
 
-                self.dns_record_id = rec.id
+                    self.dns_record_id = rec.rec_id
+                end
 
                 rec
             end
         end
 
-        # Set the domain in this server's DNS record through DigitalOcean's API
+        # Set the domain in this server's DNS record through Cloudflare's API
         def set_domain(domain)
             rec = self.dns_record
             rec.name = domain
-            rec.save!
-            self.dns_record_id = rec.id if rec.id
+            rec.save
+            self.dns_record_id = rec.rec_id if rec.rec_id
             Rails.logger.info "Assigned #{self.datacenter} #{self.name} (#{self.ip}) to domain #{domain}"
         end
 
-        # Set the ip in this server's DNS record through DigitalOcean's API
+        # Set the ip in this server's DNS record through Cloudflare's API
         def set_ip(ip)
             rec = self.dns_record
-            rec.data = ip
-            rec.save!
-            self.dns_record_id = rec.id if rec.id
+            rec.content = ip
+            rec.save
+            self.dns_record_id = rec.rec_id if rec.rec_id
             Rails.logger.info "Assigned #{self.datacenter} #{self.name} to ip #{ip}"
         end
 

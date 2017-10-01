@@ -2,8 +2,8 @@
 Rails.configuration.tap do |config|
     config.servers = {
         cloudflare: {
-            api_key: '...',
-            email: '...'
+            api_key: ENV['CLOUDFLARE_API_KEY'],
+            email: ENV['CLOUDFLARE_EMAIL']
         },
 
         digitalocean: {
@@ -11,7 +11,7 @@ Rails.configuration.tap do |config|
         },
 
         dns: {
-            zone: ORG::DOMAIN,
+            zone: ENV['CLOUDFLARE_ZONE'],
             enabled_prefix: nil,
             disabled_prefix: 'offline',
             ttl: 60.seconds,
@@ -23,7 +23,8 @@ Rails.configuration.tap do |config|
             'US' => { minimum_bungees: 0 },
             'EU' => { minimum_bungees: 0 },
             'AU' => { minimum_bungees: 0 },
-            'AS' => { minimum_bungees: 0 }
+            'AS' => { minimum_bungees: 0 },
+            'SA' => { minimum_bungees: 0 }
         }
     }
 end
