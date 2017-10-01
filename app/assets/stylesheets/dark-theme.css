@@ -212,9 +212,17 @@ td {
 }
 
 .pagination > li > a,
-.pagination > li > span {
+.pagination > li > span,
+.pagination > li.disabled {
     background-color: #121212;
     color: #bdbdbd;
+}
+
+.pagination > li > a:hover,
+.pagination > li > a:focus,
+.pagination > li > span:hover,
+.pagination > li > span:focus {
+    background-color: #121212;
 }
 
 .modal-content {
@@ -229,4 +237,43 @@ td {
 .breadcrumb {
     background-color: #121212;
     border-color: transparent !important;
+}
+
+.alert-success {
+    background-color: #388E3C;
+    color: #eeeeee;
+    border-color: #1B5E20;
+}
+
+.alert-warning {
+    background-color: #F57C00;
+    color: #eeeeee;
+    border-color: #E65100
+}
+
+.alert-danger {
+    background-color: #D32F2F;
+    color: #eeeeee;
+    border-color: #B71C1C;
+}
+
+.alert-info {
+    background-color: #0288D1;
+    color: #eeeeee;
+    border-color: #01579B;
+}
+
+.trophy {
+    background-color: #121212;
+    border-color: transparent;
+}
+
+.trophy > div {
+    background-color: #323232 !important;
+    color: #eeeeee !important;
+}
+
+.map-container > .thumbnail {
+    background-color: #121212 !important;
+    border-color: transparent;
 }
