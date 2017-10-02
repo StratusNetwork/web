@@ -210,7 +210,7 @@ class Server
             # This should work in the case where DNS is being enabled, and also
             # in the case where DNS is being disabled but the save fails and it
             # needs to be re-enabled.
-            self.set_domain(self.secret_domain(:enabled)) if toggle && self.dns_enabled?
+            self.set_domain(self.secret_domain(:enabled)) if change && self.dns_enabled?
         end
 
         # If given a Time or DateTime, extract the time-of-day after
