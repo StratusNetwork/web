@@ -199,11 +199,11 @@ class Server
         # happens before the save, and enabling happens after. This ensures
         # that DNS is never enabled when the document says it isn't.
         def update_dns_record_on_save
+            change = self.changes['dns_enabled']
+            self.set_domain(self.secret_domain(:disabled)) if self.dns_record_id && change && !self.dns_enabled?
             if self.dns_record_id
-                change = self.changes['ip']
-                self.set_ip(self.ip) if change && self.ip
-                toggle = self.changes['dns_enabled']
-                self.set_domain(self.secret_domain(:disabled)) if toggle && !self.dns_enabled?
+                move = self.changes['ip']
+                self.set_ip(self.ip) if move && self.ip
             end
             yield
         ensure
