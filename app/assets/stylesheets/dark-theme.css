@@ -303,7 +303,7 @@ tr.success > th > a {
     border-color: #B71C1C;
 }
 
-.panel-info.
+.panel-info,
 .alert-info {
     background-color: #0288D1;
     color: #eeeeee;
