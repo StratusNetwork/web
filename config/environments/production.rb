@@ -64,9 +64,17 @@ PGM::Application.configure do
     config.active_support.deprecation = :notify
 
     # Custom mailing settings
+    config.action_mailer.default_url_options = { :host => ENV['DEVISE_HOST'] || ORG::DOMAIN }
     config.action_mailer.perform_deliveries = true
     config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = { address: ENV['SMTP_HOST'] || 'localhost', port: 25 }
-    config.action_mailer.default_url_options = { :host => ENV['DEVISE_HOST'] || ORG::DOMAIN }
+    config.action_mailer.smtp_settings = {
+        :address   => 'smtp.sendgrid.net',
+        :port      => 587,
+        :domain    => ORG::DOMAIN,
+        :user_name => ENV['SENDGRID_USERNAME'] || 'nil',
+        :password  => ENV['SENDGRID_PASSWORD'] || 'nil',
+        :authentication => 'plain',
+        :enable_starttls_auto => true
+    }
 
 end
