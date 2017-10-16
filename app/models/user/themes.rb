@@ -15,7 +15,7 @@ class User
         end
 
         def dyslexia_assist?
-            dyslexia_assist == true
+            dyslexia_assist
         end
     end
 end
