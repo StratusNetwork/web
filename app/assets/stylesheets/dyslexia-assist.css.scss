@@ -1,0 +1,25 @@
+@font-face {
+    font-family:'OpenDyslexic';
+    src: font-url('opendyslexic/OpenDyslexic-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family:'OpenDyslexic';
+    src: font-url('opendyslexic/OpenDyslexic-Bold.otf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family:'OpenDyslexic';
+    src: font-url('opendyslexic/OpenDyslexic-Italic.otf');
+    font-weight: normal;
+    font-style: italic;
+}
+
+body {
+    font-family: 'OpenDyslexic', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+}
