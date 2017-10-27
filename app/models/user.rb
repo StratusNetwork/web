@@ -15,6 +15,7 @@ class User
     include Alts
     include ApiModel
     include ApiSearchable
+    include Beta
     include Big3Migration
     include Channels
     include Classes
