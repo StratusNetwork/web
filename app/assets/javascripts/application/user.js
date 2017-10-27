@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    $('#information a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+
     $('#user-tabs').tabCollapse({
         tabsClass: 'hidden-sm hidden-xs',
         accordionClass: 'visible-sm visible-xs'
