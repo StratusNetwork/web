@@ -45,9 +45,10 @@ class RegistrationsController < Devise::RegistrationsController
             banned_updates << 'death_screen'
         end
 
-        unless User.valid_death_screen?(form[:death_screen])
-            form[:death_screen] = 'default'
-        end
+        # FIXME
+        # unless User.valid_death_screen?(form[:death_screen])
+        #     form[:death_screen] = 'default'
+        # end
 
         form = params[:user]
         form.delete_if{|key, value| banned_updates.include? key.to_sym}
