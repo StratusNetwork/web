@@ -16,6 +16,7 @@ steps:
       - --tag=gcr.io/$PROJECT_ID/web:$BRANCH_NAME
       - --cache-from=gcr.io/$PROJECT_ID/web:$BRANCH_NAME
       - --build-arg=BRANCH=$BRANCH_NAME
+      - --build-arg=AUTH=$_AUTH
       - docker/web
     wait_for:
       - git
