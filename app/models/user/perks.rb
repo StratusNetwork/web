@@ -43,7 +43,7 @@ class User
             end
 
             def valid_death_screen?(key)
-                key == nil || death_screens.include?(key)
+                key == nil || death_screens.include?(key) || death_screens.values.include?(key)
             end
         end
 
