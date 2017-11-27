@@ -44,7 +44,7 @@ class User
         end
 
         def can_set_death_screen?
-            death_screen != nil
+            premium? || death_screen != nil
         end
     end
 end

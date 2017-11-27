@@ -21,7 +21,7 @@ class User
         end
 
         def can_set_default_server?
-            premium?
+            premium? || default_server_id != nil
         end
 
         def default_server_route

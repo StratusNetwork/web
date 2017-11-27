@@ -37,11 +37,17 @@ class RegistrationsController < Devise::RegistrationsController
 
         banned_updates = @user.banned_updates
 
+        unless @user.can_set_default_server?
+            banned_updates << 'default_server_id'
+        end
+
+        unless @user.can_set_death_screen?
+            banned_updates << 'death_screen'
+        end
+
         form = params[:user]
         form.delete_if{|key, value| banned_updates.include? key.to_sym}
 
-        # FIXME: Check permissions before changing default server and death screen
-        # return redirect_to_back edit_user_registration_path, :alert => 'You must be a premium user to change your default server' unless @user.can_set_default_server?
         return redirect_to_back edit_user_registration_path, :alert => 'Invalid gender specified' unless ['Male', 'Female', 'Other', '', nil].include? form[:gender]
         return redirect_to_back edit_user_registration_path, :alert => 'Invalid theme specified' unless ['Default', 'Dark Theme', '', nil].include? form[:web_theme]
 
