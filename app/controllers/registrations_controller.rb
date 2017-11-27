@@ -45,6 +45,8 @@ class RegistrationsController < Devise::RegistrationsController
             banned_updates << 'death_screen'
         end
 
+        return redirect_to_back edit_user_registration_path, :alert => 'Invalid death screen' unless User.valid_death_screen?(form[:death_screen])
+
         form = params[:user]
         form.delete_if{|key, value| banned_updates.include? key.to_sym}
 

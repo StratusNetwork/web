@@ -41,10 +41,15 @@ class User
                 'up' => 'Just give up.'
             }
             end
+
+            def valid_death_screen?(key)
+                key == nil || death_screens.include?(key)
+            end
         end
 
         def can_set_death_screen?
             premium? || death_screen != nil
         end
+
     end
 end
