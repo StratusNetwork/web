@@ -26,7 +26,7 @@ Repository.define do
                 title           "Website"
                 description     "Our website repository"
                 repo            "OCN"
-                open?           false
+                open?           true
             end
 
             repository :rotations do
