@@ -13,7 +13,9 @@ class Server
             # }
             #
             field :dynamics, :type => Hash, :default => {}.freeze
-
+            
+            api_property :dynamics
+            attr_accessible :dynamics
             attr_cloneable :dynamics
         end
 
