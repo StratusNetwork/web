@@ -23,6 +23,8 @@ PGM::Application.routes.draw do
     put '/set_time_zone', :to => 'application#set_time_zone'
     get '/load_models', :to => 'application#load_models'
 
+    get '/apply' => redirect('https://stratus.network/forums/59ac44fba2e3a9000100004c')
+
     resources :revisions
     resources :rules
     resources :staff
