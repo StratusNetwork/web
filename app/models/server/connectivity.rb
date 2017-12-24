@@ -22,6 +22,7 @@ class Server
             # the server will allocate a port dynamically on startup and report
             # it back to the API.
             field :port, :type => Integer
+            attr_accessible :port
 
             # If the server is online, this is the port it is currently listening on,
             # which may be statically assigned or dynamically allocated.
@@ -30,7 +31,7 @@ class Server
 
             attr_cloneable :datacenter
 
-            api_property :datacenter, :ip, :current_port
+            api_property :datacenter, :ip, :port, :current_port
             api_synthetic :box, :box_id   # TODO: rename the Java field
 
             api_synthetic :domain do
