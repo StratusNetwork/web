@@ -2,7 +2,8 @@ steps:
   - name: gcr.io/cloud-builders/git
     args:
       - clone
-      - https://github.com/StratusNetwork/docker.git
+      - --depth=1
+      - https://github.com/Electroid/infrastructure.git
   - name: gcr.io/cloud-builders/docker
     args:
       - build
@@ -10,6 +11,6 @@ steps:
       - --cache-from=gcr.io/$PROJECT_ID/web:$BRANCH_NAME
       - --build-arg=BRANCH=$BRANCH_NAME
       - --build-arg=AUTH=$_AUTH
-      - docker/web
+      - infrastructure/docker/web
 images:
   - gcr.io/$PROJECT_ID/web:$BRANCH_NAME
