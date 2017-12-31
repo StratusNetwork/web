@@ -58,7 +58,7 @@ class Map
         mixed:      {name: "Mixed"},
         skywars:    {name: "Skywars"},
         survival:   {name: "Survival Games"},
-        survival:   {name: "Payload"},
+        payload:    {name: "Payload"},
     }
 
     field :_id,             type: String, overwrite: true # Derived from other fields, see #normalize
