@@ -32,7 +32,7 @@ Repository.define do
             repository :rotations do
                 title           "Rotations"
                 description     "Our map rotations on our servers"
-                repo            "Map-Rotations"
+                repo            "Rotations"
                 open?           true
             end
         end
