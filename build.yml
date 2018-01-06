@@ -1,3 +1,4 @@
+timeout: 30m
 steps:
   - name: gcr.io/cloud-builders/git
     args:
