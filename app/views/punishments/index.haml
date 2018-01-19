@@ -14,7 +14,7 @@
             - @punishments = PunishmentHelper.filter_punishments(current_user, @punishments)
             - if @punishments.nil? || @punishments.count < 1
                 %center
-                    %p No punishments to display.
+                    %p.strong No punishments to display.
             - else
                 - unless @displayed_statuses.empty?
                     .pull-right{:style => 'margin-top: -15px; margin-bottom: 8px'}
