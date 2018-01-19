@@ -1,3 +1,7 @@
+:css
+    .red a {
+        color: red;
+    }
 %section
     .row
         .col-md-12
@@ -10,6 +14,8 @@
                         %th{width: "55%"} Message
                         %th{width: "10%"} Weight
                         %th{width: "20%"} Expiration
+                        %th{width: "2%"}
+                        %th{width: "2%"}
                 %tbody
                     - @banners.each do |banner|
                         %tr{class: ("success" if banner.active_at)}
@@ -19,6 +25,10 @@
                                 %td= format_relative_time(banner.expires_at)
                             - else
                                 %td= ""
-                            %td= link_to "Edit", edit_admin_banner_path(banner)
-                            %td= link_to "Delete", admin_banner_path(banner), method: "delete", :confirm => "Are you sure?"
+                            %td.center
+                                %a{:href => edit_admin_banner_path(banner)}
+                                    %i.fa.fa-pencil-alt
+                            %td.red
+                                %a{:href => admin_banner_path(banner), :data => {:method => :delete, :confirm => "Are you sure?"}}
+                                    %i.fa.fa-times
             = pagination

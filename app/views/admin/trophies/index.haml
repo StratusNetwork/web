@@ -12,12 +12,15 @@
                 %table.table
                     %thead
                         %tr
+                            %th Icon
                             %th Identifier
                             %th Name
                             %th Description
                     %tbody
                         - @trophies.each do |trophy|
                             %tr
+                                %td.center
+                                    %i{:class => trophy.css_class}
                                 %td= trophy.id
                                 %td= trophy.name
                                 %td= trophy.description
