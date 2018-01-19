@@ -1,3 +1,7 @@
+:css
+    .red a {
+        color: red;
+    }
 %section
     .row
         .col-md-12
@@ -10,8 +14,8 @@
                             %th Mask
                             %th Description
                             %th Block Count
-                            %th
-                            %th
+                            %th{:width => "2%"}
+                            %th{:width => "2%"}
                     %tbody
                         - @ipbans.each do |ipban|
                             %tr
@@ -25,5 +29,9 @@
                                         %code= ipban.mask
                                 %td{width: "40%"}= ipban.description
                                 %td{width: "10%"}= ipban.blocked
-                                %td= link_to "Edit", edit_admin_ipban_path(ipban)
-                                %td= link_to "Delete", admin_ipban_path(ipban), :method => :delete, :confirm => "Are you sure?"
+                                %td.center
+                                    %a{:href => edit_admin_ipban_path(ipban)}
+                                        %i.fa.fa-pencil-alt
+                                %td.center.red
+                                    %a{:href => admin_ipban_path(ipban), :data => {:method => :delete, :confirm => "Are you sure?"}}
+                                        %i.fa.fa-times

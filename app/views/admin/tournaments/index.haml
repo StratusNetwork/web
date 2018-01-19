@@ -7,9 +7,11 @@
                     %thead
                         %tr
                             %th Name
-                            %th Edit
+                            %th{:width => "2%"}
                     %tbody
                         - @tournaments.each do |tournament|
                             %tr
                                 %td= tournament.name
-                                %td= link_to "Edit", edit_admin_tournament_path(tournament)
+                                %td
+                                    %a{:href => edit_admin_tournament_path(tournament)}
+                                        %i.fa.fa-pencil-alt

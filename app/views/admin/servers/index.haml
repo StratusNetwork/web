@@ -2,6 +2,9 @@
     .container {
         width: 1200px;
     }
+    .red a {
+        color: red;
+    }
 %section
     .btn-group
         %a.btn.btn-default.disabled Datacenter
@@ -57,7 +60,7 @@
                                 %th{width: 40} DC
                                 %th{width: 70} Box
                                 %th{width: 160}= bungee ? "IP" : "Token"
-                                %th{width: 160} Name
+                                %th{width: 150} Name
                                 - if @nextgen_repo
                                     %th{width: 70} Nextgen
                                 %th{width: 70}= bungee ? "Bungee" : "Bukkit"
@@ -72,8 +75,8 @@
                                 %th{width: 70} Ensure
                                 %th{width: 70} Uptime
                                 %th{width: 70} Restart
-                                %th
-                                %th
+                                %th{width: 5}
+                                %th{width: 5}
                         %tbody.tiny-text
                             - family[:servers].each do |server|
                                 %tr
@@ -107,10 +110,10 @@
                                     %td{:class => server.ensure_color}= server.ensure
                                     %td{:class => server.uptime_color}= server.uptime_text
                                     %td{:class => server.restart_color}= server.restart_text
-                                    %td
+                                    %td.center
                                         %a{:href => edit_admin_server_path(server.id)}
                                             %i.fa.fa-pencil-alt
-                                    %td
+                                    %td.center.red
                                         %a{:href => admin_server_path(server.id), :data => {:method => :delete, :confirm => "Are you sure you want to delete #{server.name}?"}}
                                             %i.fa.fa-times
     .row

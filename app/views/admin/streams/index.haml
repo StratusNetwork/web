@@ -1,3 +1,7 @@
+:css
+    .red a {
+        color: red;
+    }
 %section
     .row
         .col-md-12
@@ -11,8 +15,8 @@
                             %th{width: "10%"} Priority
                             %th Channel
                             %th{width: "10%"} Live
-                            %th{width: "10%"}
-                            %th{width: "10%"}
+                            %th{width: "2%"}
+                            %th{width: "2%"}
                     %tbody
                         - @streams.each do |stream|
                             %tr{class: ('error' if stream.public)}
@@ -21,6 +25,10 @@
                                 %td
                                     - if stream.public
                                         Yes
-                                %td= link_to "Edit", edit_admin_stream_path(stream)
-                                %td= link_to "Delete", admin_stream_path(stream), method: 'delete'
+                                %td.center
+                                    %a{:href => edit_admin_stream_path(stream)}
+                                        %i.fa.fa-pencil-alt
+                                %td.center.red
+                                    %a{:href => admin_stream_path(stream), :data => {:method => :delete, :confirm => "Are you sure?"}}
+                                        %i.fa.fa-times
             = pagination
