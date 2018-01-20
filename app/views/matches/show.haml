@@ -28,36 +28,36 @@
                 %img.thumbnail{src: image_path(Map.missing_thumbnail_url)}
         .col-md-4
             - if @match.server
-                %h2
+                %h3.strong
                     %a{href: play_path}= @match.server.name
                     %small server
-            %h2
+            %h3.strong
                 = @match.length
                 %small match length
         .col-md-4
-            %h2
+            %h3.strong
                 = @kill_count
                 %small kills
-            %h2
+            %h3.strong
                 = @death_count
                 %small deaths
 
             - unless @weapons.empty?
-                %h2
+                %h3.strong
                     = @most_common.gsub("_", " ").titlecase
                     %small most common weapon
-                %h2
+                %h3.strong
                     = @least_common.gsub("_", " ").titlecase
                     %small least common weapon
     .row
         .col-md-12
             %hr
-            %h1{style: "margin-top: 20px;"} Teams
+            %h2.strong{style: "margin-top: 20px;"} Teams
     .row
         - @teams.each do |team_name, members|
             - next if members.empty?
             .col-md-4
-                %h4
+                %h4.strong
                     = team_name
                     %small
                         = members.count.to_s
