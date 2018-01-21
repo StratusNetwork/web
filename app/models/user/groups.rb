@@ -14,7 +14,7 @@ class User
                         {
                             realm: realm,
                             text: "#{ChatColor[flair.color]}#{flair.symbol}",
-                            priority: flair.priority ||= group.priority,
+                            priority: flair.priority || group.priority,
                         }
                     end
                 end
