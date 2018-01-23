@@ -126,7 +126,7 @@ class Map
         embedded_in :map
 
         # Minimum ratings for a confident aggregate score
-        THRESHOLD = 300
+        THRESHOLD = 100
 
         field :count, type: Integer, default: 0     # Number of votes
         field :total, type: Integer, default: 0     # Sum of all votes
