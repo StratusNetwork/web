@@ -99,7 +99,7 @@ class Server
                 if revisions
                     revisions.find{|r| r.sha == commit }
                 else
-                    Repository[:plugins].revision(commit)
+                    Repository[:projectares].revision(commit)
                 end
             end
         end

@@ -47,7 +47,7 @@ module Admin
             end
 
             # Fill cache
-            Repository[:plugins].revisions(per_page: 20)
+            Repository[:projectares].revisions(per_page: 20)
             Repository[:sportbukkit].revisions(per_page: 20)
             if @nextgen_repo = Repository[:nextgen]
                 @nextgen_repo.revisions(per_page: 20)
