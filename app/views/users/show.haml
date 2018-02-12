@@ -1,4 +1,10 @@
 - content_for :title do @player.username end
+
+- if @player.username == "BrettOgden"
+    = stylesheet_link_tag "application/confetti"
+    = javascript_include_tag "application/confetti"
+    #confetti
+
 %section
     - if @player.suspended?
         - content_for :noindex, true
