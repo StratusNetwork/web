@@ -1,3 +1,11 @@
+.well {
+    outline: none;
+    border-color: #F48FB1;
+    box-shadow: 0 0 4px 1px #F48FB1;
+}
+
+/* Confetti Animation */
+
 #confetti {
     left: 0;
     position: fixed;
