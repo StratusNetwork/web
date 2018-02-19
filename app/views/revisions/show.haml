@@ -16,9 +16,7 @@
                     Revisions will appear again when the repository comes back online
             - if @repository.open?
                 .alert.alert-info
-                    %strong This repository is open source
-                    You can
-                    %a{:href => @repository.public_url} fork it
+                    %strong This repository is open source!
 
             .strong
                 != @repository.description_html
