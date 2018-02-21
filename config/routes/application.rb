@@ -24,6 +24,7 @@ PGM::Application.routes.draw do
     get '/load_models', :to => 'application#load_models'
 
     get '/apply' => redirect('https://stratus.network/forums/59ac44fba2e3a9000100004c')
+    get '/mapmaking' => redirect('https://stratus.network/forums/58e16d72f6e8a83410000047')
 
     resources :revisions
     resources :rules
