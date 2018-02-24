@@ -16,7 +16,7 @@
             %meta{:name => "robots", :content => "noindex"}
         = stylesheet_link_tag "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css", "application", "//fonts.googleapis.com/css?family=Noto+Sans:700,400,300", "//use.fontawesome.com/releases/v5.0.0/css/all.css"
         - if user_signed_in? && current_user.dark_theme?
-            = stylesheet_link_tag "dark-theme"
+            = stylesheet_link_tag "themes/regular/dark-theme"
         - if user_signed_in? && current_user.flatly_theme?
             = stylesheet_link_tag "themes/premium/flatly", "themes/premium/flatly_addon"
         - if user_signed_in? && current_user.dyslexia_assist?
