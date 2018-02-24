@@ -191,6 +191,9 @@
                                 .form-group{style: "margin-top: 16px;"}
                                     = f.label :death_screen, 'Death Screen'
                                     = f.select :death_screen, User.death_screens.invert, { :model => String }, :class => 'form-control', :disabled => !@user.can_set_death_screen?
+                                .form-group{style: "margin-top: 16px;"}
+                                    = f.label :premium_web_theme, 'Premium Themes'
+                                    = f.select :premium_web_theme, ["Default", "Flatly"], { :model => String }, :class => 'form-control'
                             .col-md-6
                                 .well.well-settings
                                     .checkbox{toggle: "tooltip", placement: "bottom", title: "Enables Beta Participation and shows features that are in the beta stage. These features might not be fully implemented yet and might not work properly."}
