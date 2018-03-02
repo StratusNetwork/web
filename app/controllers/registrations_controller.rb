@@ -46,6 +46,14 @@ class RegistrationsController < Devise::RegistrationsController
             return redirect_to_back edit_user_registration_path, :alert => 'You have to be premium to update that setting!'
         end
 
+        if form[:premium_web_theme].present?
+            @user.web_theme = nil
+        end
+
+        if form[:web_theme].present?
+            @user.premium_web_theme = nil
+        end
+
         return redirect_to_back edit_user_registration_path, :alert => 'Invalid gender specified' unless ['Male', 'Female', 'Other', '', nil].include? form[:gender]
         return redirect_to_back edit_user_registration_path, :alert => 'Invalid theme specified' unless ['Default', 'Dark Theme', '', nil].include? form[:web_theme]
         return redirect_to_back edit_user_registration_path, :alert => 'Invalid theme specified' unless ['Default', 'Flatly', '', nil].include? form[:premium_web_theme]
