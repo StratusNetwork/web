@@ -3,13 +3,11 @@
         .navbar-header
             %button.navbar-toggle.collapsed#top-navbar-collapse-button{ :data => {:toggle => "collapse", :target => "#top-navbar-collapse"}}
                 - unless @alerts.blank?
-                    %span.badge= @alert_count
+                    %span.badge.alert-badge= @alert_count
                 %span.fa.fa-bars
             %a.navbar-brand{:href => main_app.root_path}
-                - if current_user_safe.dark_theme?
-                    %img.pull-left{:src => image_path('logo_dark_theme.png'), :height => 34}
-                - else
-                    %img.pull-left{:src => image_path('logo.png'), :height => 34}
+                %img.pull-left{:src => image_path('logo_cloud.png'), :height => 34}
+                Stratus Network
         .navbar-collapse.collapse#top-navbar-collapse
             -# Remove right margin to prevent wrapping when nav is full
             %ul.nav.navbar-nav{style: "margin-right: 0;"}
