@@ -24,6 +24,7 @@ module Permissions
             end
 
             domain :user do
+                boolean :admin, "access the user admin area"
                 branch :profile do
                     branch :verified do
                         ownable :edit, "edit verified profile fields"
