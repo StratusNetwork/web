@@ -2,6 +2,11 @@ module Admin
     class UsersController < BaseController
         breadcrumb "Users"
 
+        def self.general_permission
+            ['user', 'admin', true]
+        end
+
+        skip_before_filter :authenticate_admin
         before_filter :find_user, :only => [:edit, :update, :become, :clear_channels]
 
 
