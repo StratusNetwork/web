@@ -33,8 +33,8 @@ class Server
 
             attr_cloneable :datacenter
 
-            api_property :datacenter, :ip, :port, :current_port, :box
-            api_synthetic :box_id   # TODO: rename the Java field
+            api_property :datacenter, :ip, :port, :current_port
+            api_synthetic :box, :box_id   # TODO: rename the Java field
 
             api_synthetic :domain do
                 connect_to
