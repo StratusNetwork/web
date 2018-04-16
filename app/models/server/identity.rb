@@ -34,7 +34,7 @@ class Server
             scope :network, -> (network) { where(network: network) }
 
             attr_cloneable :priority, :family, :network, :description
-
+            attr_accessible :priority, :name, :description, :bungee_name, :family, :network
             api_property :priority, :name, :description, :bungee_name, :family, :network
 
             validates_presence_of :priority

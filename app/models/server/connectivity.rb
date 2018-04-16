@@ -7,10 +7,12 @@ class Server
             # Datacenter where the server is hosted
             field :datacenter, type: String
             scope :datacenter, ->(datacenter){ where(datacenter: datacenter.upcase) if datacenter }
+            attr_accessible :datacenter
 
             # Box the server is running on
             field :box, as: :box_id, type: String
             scope :box, -> (box) { where(box: (if box.is_a?(Box) then box.id else box end)) }
+            attr_accessible :box
 
             # IP or hostname that should be used to connect to the server
             # For Bungees, this is a public routable IP. For servers behind
@@ -31,8 +33,8 @@ class Server
 
             attr_cloneable :datacenter
 
-            api_property :datacenter, :ip, :port, :current_port
-            api_synthetic :box, :box_id   # TODO: rename the Java field
+            api_property :datacenter, :ip, :port, :current_port, :box
+            api_synthetic :box_id   # TODO: rename the Java field
 
             api_synthetic :domain do
                 connect_to

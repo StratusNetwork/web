@@ -11,8 +11,8 @@ class Server
             field :kick_message, type: String
 
             attr_cloneable :whitelist_enabled
-
-            api_property :whitelist_enabled
+            attr_accessible :whitelist_enabled, :kick_users, :kick_message
+            api_property :whitelist_enabled, :kick_users, :kick_message
         end # included do
     end # Whitelist
 end

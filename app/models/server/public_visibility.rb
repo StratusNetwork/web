@@ -9,7 +9,7 @@ class Server
         included do
             field :startup_visibility, type: Visibility, default: Visibility::UNLISTED
             field :visibility, type: Visibility, default: Visibility::UNLISTED
-            attr_accessible :visibility
+            attr_accessible :startup_visibility, :visibility
 
             validates_inclusion_of :visibility, in: Visibility.values
 

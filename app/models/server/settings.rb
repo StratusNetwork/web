@@ -6,7 +6,7 @@ class Server
             field :settings_profile, type: String
 
             attr_cloneable :settings_profile
-
+            attr_accessible :settings_profile
             api_property :settings_profile
         end # included do
     end # Settings

@@ -9,7 +9,7 @@ class Server
             scope :realms, -> (s) { self.in(realms: s.to_a) }
 
             attr_cloneable :realms
-
+            attr_accessible :realms
             api_property :realms
 
             api_synthetic :participant_permissions do

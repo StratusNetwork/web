@@ -17,7 +17,7 @@ class Server
             scope :pgms, role(Role::PGM)
 
             attr_cloneable :role
-
+            attr_accessible :role
             api_property :role
         end # included do
 
