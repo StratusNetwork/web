@@ -132,9 +132,14 @@ class RegistrationsController < Devise::RegistrationsController
             token.from_client(client)
             token.save!
 
-            Channel::Youtube.refresh_for_user!(current_user)
+            case service
+                when :youtube
+                    Channel::Youtube.refresh_for_user!(current_user)
+                when :discord
+                    User::Connections::Account::Discord.connect(current_user, token)        
+            end
 
-            redirect_to edit_user_registration_path, notice: "Authorization successful"
+            redirect_to edit_user_registration_path, notice: 1/0 #{}"Authorization successful"
         else
             redirect_to edit_user_registration_path, error: "Authorization failed"
         end

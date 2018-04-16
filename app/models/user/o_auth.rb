@@ -34,7 +34,7 @@ class User
                 if client.expires_at
                     self.expires_at = client.expires_at
                     self.refreshed_at = client.expires_at - client.expires_in
-                else
+                elsif client.refresh_token
                     self.refreshed_at = Time.now
                     self.expires_at = self.refreshed_at + 1.minute # wild guess
                 end
@@ -42,7 +42,7 @@ class User
 
             def fresh_client
                 client = to_client
-                if access_token.nil? || Time.now + 1.minute > expires_at # Refresh if less than a minute left
+                if refresh_token && (access_token.nil? || Time.now + 1.minute > expires_at) # Refresh if less than a minute left
                     begin
                         client.grant_type = 'refresh_token'
                         client.refresh!
@@ -68,11 +68,11 @@ class User
             def create_client_for(service)
                 service = service.to_sym
                 if client = Rails.configuration.oauth2_client_secrets[service]
-                    client = client.to_authorization
+                    client = client.to_authorization rescue client # Google clients require a conversion
                     client.state = service.to_s
                     client.grant_type = 'authorization_code'
 
-                    case service
+                    case service # Google clients cannot set scope in its initializer
                         when :youtube
                             client.scope = 'https://www.googleapis.com/auth/youtube.readonly'
                     end

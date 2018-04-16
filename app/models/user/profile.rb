@@ -3,8 +3,7 @@ class User
         extend ActiveSupport::Concern
 
         SHORT_FIELD_NAMES = [:public_email, :gender, :location, :occupation, :interests,
-                             :skype, :twitter, :facebook, :steam, :reddit, :github, :twitch,
-                             :discord].freeze
+                             :skype, :twitter, :facebook, :steam, :reddit, :twitch].freeze
 
         FIELD_NAMES = [*SHORT_FIELD_NAMES, :about].freeze
 

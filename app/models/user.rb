@@ -19,6 +19,7 @@ class User
     include Big3Migration
     include Channels
     include Classes
+    include Connections
     include Current
     include Engagements
     include Forums

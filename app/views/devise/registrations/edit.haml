@@ -12,7 +12,7 @@
                         %a{:href => '#login', :data => {:toggle => 'pill'}}
                             %i.fa.fa-lock
                             Login Information
-                    -#%li
+                    %li
                         %a{:href => '#accounts', :data => {:toggle => 'pill'}}
                             %i.fa.fa-link
                             Connected Accounts
@@ -90,22 +90,36 @@
                             .col-md-12
                                 .form-group
                                     = f.submit "Update", :class => "btn btn-primary"
-                -#.tab-pane.fade#accounts
+                .tab-pane.fade#accounts
                     %h3.strong Connected Accounts
                     %hr
                     .row
+                        .table-container
+                            %table.table.table-bordered.table-striped{style: "margin-top: 16px;"}
+                                %thead
+                                    %tr
+                                        %th Channel
+                                        %th Player
+                                        -#%th{width: "1%"}= link_to 'Videos', params.merge(sort: 'videos')
+                                %tbody
+                                    - ["ch1", "ch2", "ch3"].each_with_index do |channel, index|
+                                        %tr
+                                            %td
+                                                %a{href: ''}
+                                                    - if 'thumbnail'
+                                                        %img.thumb{src: 'thumbnail', align: 'middle'}
+                                                    = channel.to_s
+                                            %td= 'Hi'
                         .col-md-4
                             .col-md-6.col-xs-6.account-label
                                 .center
                                     - if current_user.find_oauth2_token_for(:youtube)
                                         .label.label-success Connected
                                     - else
-                                        -#.label.label-default Not Connected
-                                        .label.label-default Coming Soon
+                                        .label.label-default Not Connected
                             .col-md-6.col-xs-6.account-logo
                                 .center
-                                    %a
-                                        -# {href: oauth2_authorize_path(service: 'youtube')}
+                                    %a{href: oauth2_authorize_path(service: 'github')}
                                         %img{src: image_path("youtube120.png")}
                         .col-md-8
                             - if current_user.find_oauth2_token_for(:youtube)
@@ -115,11 +129,6 @@
                                     Click the logo to connect your YouTube account and display a link to your channel in your
                                     = succeed "." do
                                         %a{href: user_path(current_user)} profile
-                                -# %p
-                                    If you are a member of the
-                                    Let's Play group, you will also get a YouTube badge, and your channel will be listed on the
-                                    %a{href: channels_path} channels
-                                    page.
                 .tab-pane.fade#social
                     %h3.strong Social Media
                     %hr
@@ -135,19 +144,13 @@
                                 .form-group
                                     = f.label :steam, "Steam"
                                     = f.text_field :steam, :disabled => (@disabled.include? :steam), :class => 'form-control'
+                            .col-md-6
                                 .form-group
                                     = f.label :twitch, "Twitch"
                                     = f.text_field :twitch, :disabled => (@disabled.include? :twitch), :class => 'form-control'
-                            .col-md-6
-                                .form-group
-                                    = f.label :github, "GitHub"
-                                    = f.text_field :github, :disabled => (@disabled.include? :github), :class => 'form-control'
                                 .form-group
                                     = f.label :reddit, "Reddit"
                                     = f.text_field :reddit, :disabled => (@disabled.include? :reddit), :class => 'form-control'
-                                .form-group
-                                    = f.label :discord, "Discord"
-                                    = f.text_field :discord, :disabled => (@disabled.include? :discord), :class => 'form-control'
                             .col-md-12
                                 .form-group
                                     = f.submit "Update", :class => "btn btn-primary"

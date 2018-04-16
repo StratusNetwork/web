@@ -55,6 +55,7 @@ gem 'braintree'                         # Payment processor
 gem 'geoip'                             # IP lookup utility
 gem 'droplet_kit'                       # Digital Ocean client
 gem 'lockup'                            # Password protect development/staging websites
+gem 'discordrb'                         # Discord api and bot integration
 gem 'net-http-pipeline'
 gem 'crowdin-api', github: 'OvercastNetwork/crowdin-api', branch: 'master'
 
@@ -71,7 +72,7 @@ group :production, :staging do
     gem 'sass-rails'                    # CSS and JS minification
     gem 'coffee-rails'                  # CSS and JS minification
     gem 'uglifier'                      # CSS and JS minification
-    gem 'therubyracer'                  # CSS and JS minification
+    #gem 'therubyracer'                  # CSS and JS minification
 end
 
 group :development do

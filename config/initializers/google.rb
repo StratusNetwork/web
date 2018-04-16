@@ -15,18 +15,7 @@ Rails.configuration.tap do |config|
 
     config.google_encode = "..."
 
-    config.google_api_key = "..."
-
-    config.oauth2_client_secrets = {
-        youtube: Google::APIClient::ClientSecrets.new(
-            'web' => {
-                client_id: "xxx.apps.googleusercontent.com",
-                client_secret: "...",
-                redirect_uri: "...",
-                javascript_origin: "...",
-            }
-        ),
-    }
+    config.google_api_key = ENV["GOOGLE_API_KEY"] || "AIzaSyC2xi1TP31gSt06L2UX8nozqr0JMcwMGr4"
 end
 
 module GOOGLE
@@ -35,11 +24,11 @@ module GOOGLE
     def new_client(**options)
         options[:authorization] ||= nil # Without this, it creates an OAuth2 client
         options[:key] &&= Rails.configuration.google_api_key
-        Google::APIClient.new(application_name: 'OCN', **options)
+        Google::APIClient.new(application_name: 'website', **options)
     end
 
-    # CLIENT = new_client
-    # KEY_CLIENT = new_client(key: true)
-    # YOUTUBE = KEY_CLIENT.discovered_api('youtube', 'v3')
+    CLIENT = new_client
+    KEY_CLIENT = new_client(key: true)
+    YOUTUBE = KEY_CLIENT.discovered_api('youtube', 'v3')
 end
 
