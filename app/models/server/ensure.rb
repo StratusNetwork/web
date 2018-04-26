@@ -9,7 +9,8 @@ class Server
         included do
             field :ensure
             field :status
-            attr_accessible :ensure
+            attr_accessible :ensure, :status
+            api_property :ensure, :status
 
             # Commands to be run in the server console
             field :server_commands, :type => Array, :default => [].freeze
