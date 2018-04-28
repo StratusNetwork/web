@@ -25,10 +25,10 @@ class Server
             # Once to copy the new path, and again to update from that path.
             #
             # TODO: Find a less wacky way to do this
-            field :update_server_path, type: String
+            field :update_server_path, type: String, default: nil
 
             # Directory this server is deployed to on its box
-            field :deploy_path, type: String
+            field :deploy_path, type: String, default: nil
 
 
             ### Fields reported by the server on startup
@@ -42,7 +42,7 @@ class Server
 
             field :protocol_versions, type: Array, default: -> { [] }
 
-            properties = [:plugin_versions, :deploy_info, :protocol_versions]
+            properties = [:plugin_versions, :update_server_path, :deploy_path, :deploy_info, :protocol_versions]
             attr_accessible *properties
             api_property *properties
 
@@ -53,14 +53,6 @@ class Server
                 true
             end
         end # included do
-
-        def update_server_path
-            self[:update_server_path] || "#{Repository::BASE_PATH}/nextgen/update-server"
-        end
-
-        def deploy_path
-            self[:deploy_path] || "/minecraft/servers/#{self.id}"
-        end
 
         def deployed_sha(package = nil)
             if deploy_info
