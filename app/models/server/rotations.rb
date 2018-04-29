@@ -5,13 +5,12 @@ class Server
 
         included do
             field :rotations, type: Array, default: [].freeze
-            attr_accessible :rotations
-            api_property :rotations
-
             field :rotation_file, type: String # relative to rotations repo root
 
-            blank_to_nil :rotation_file
+            attr_accessible :rotations, :rotation_file
             attr_cloneable :rotations, :rotation_file
+            api_property :rotations, :rotation_file
+            blank_to_nil :rotation_file
 
             # Lines from the rotation file, if any
             attr_cached :rotation_entries do
