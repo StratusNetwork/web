@@ -49,7 +49,7 @@ class ApplicationController < CommonController
         (1..21).each{|i| images << "index/marketing/" + i.to_s + ".jpg"}
         @image = images.sample
 
-        @topics = Forem::Topic.announcements.limit(4)
+        @topics = Forem::Topic.announcements.limit(3)
     end
 
     # Returns the permission required to access any part of this controller.
