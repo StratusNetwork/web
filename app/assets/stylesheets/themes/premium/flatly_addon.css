@@ -63,3 +63,7 @@
 .alert-badge {
     background-color: #ffffff !important;
 }
+
+.play .connect .hostname input {
+    background-color: #2c3e50;
+}
