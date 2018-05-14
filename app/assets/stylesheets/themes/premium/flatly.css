@@ -4733,7 +4733,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border: 1px solid transparent;
   margin-left: -1px;
 }
-.pagination > li > a:hover {
+.pagination > li > a:hover,
+.pagination > li > span:hover {
   background-color: #1a242f;
 }
 .pagination > li:first-child > a,
