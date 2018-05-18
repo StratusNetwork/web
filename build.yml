@@ -12,6 +12,6 @@ steps:
       - --cache-from=gcr.io/$PROJECT_ID/web:$BRANCH_NAME
       - --build-arg=BRANCH=$BRANCH_NAME
       - --build-arg=AUTH=$_AUTH
-      - infrastructure/docker/web
+      - infrastructure/models/web
 images:
   - gcr.io/$PROJECT_ID/web:$BRANCH_NAME
