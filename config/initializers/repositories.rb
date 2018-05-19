@@ -43,13 +43,6 @@ Repository.define do
                 branch          "gh-pages"
                 open?           true
             end
-
-            repository :rotations do
-                title           "Rotations"
-                description     "Our server rotation files"
-                repo            "Rotations"
-                open?           true
-            end
         end
     end
 end
