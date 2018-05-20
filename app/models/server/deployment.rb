@@ -14,6 +14,25 @@ class Server
         include Lifecycle
 
         included do
+            # The ID of a virtual machine (ie. Droplet) that deploys this server.
+            field :machine_id, default: nil
+
+            # The following paths are relative to the folders in this repository:
+            # https://github.com/StratusNetwork/Data
+            field :server_path,    type: String, default: -> {bungee? ? "bungee" : "bukkit"}.freeze
+            field :plugins_path,   type: String, default: "base".freeze
+            field :rotations_path, type: String, default: "default".freeze
+
+            # The path and branch for the (private) Maps repository.
+            field :maps_path,   type: String, default: "/".freeze
+            field :maps_branch, type: String, default: "master".freeze
+
+            properties2 = [:server_path, :plugins_path, :rotations_path, :maps_path, :rotations_path]
+
+            api_property    :machine_id, *properties2
+            attr_accessible :machine_id, *properties2
+            attr_cloneable *properties2
+
             # Path to the update-server script in the Nextgen root folder.
             # This field is set on the API side to tell the server where to update
             # itself from. This can be used to switch a server to an alternate Nextgen
