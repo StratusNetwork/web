@@ -60,25 +60,13 @@
             .col-md-7
                 = user_select_field2 :server, :operator_ids, @server.operators
         .form-group
-            %label.col-md-4.control-label Team ID
+            %label.col-md-4.control-label Team
             .col-md-7
-                = f.text_field :team_id, :class => "form-control"
+                = team_select_field :server, :team, @server.team
         .form-group
-            %label.col-md-4.control-label Tournament ID
+            %label.col-md-4.control-label Tournament
             .col-md-7
-                = f.text_field :tournament_id, :class => "form-control"
-        .form-group
-            %label.col-md-4.control-label Ensure
-            .col-md-7
-                = f.select :ensure, [nil, "running", "stopping", "starting"], {}, :class => "form-control"
-        .form-group
-            %label.col-md-4.control-label Nextgen Path
-            .col-md-7
-                = f.text_field :update_server_path, :class => "form-control"
-        .form-group
-            %label.col-md-4.control-label Rotation Path
-            .col-md-7
-                = f.text_field :rotation_file, :class => "form-control"
+                = tournament_select_field :server, :tournament, @server.tournament
         .form-group
             %label.col-md-4.control-label Settings Profile
             .col-md-7
@@ -104,21 +92,45 @@
             .col-md-7
                 = f.text_field :datacenter, :class => "form-control"
         .form-group
-            %label.col-md-4.control-label Box
-            .col-md-7
-                = f.text_field :box_id, :class => "form-control"
-        .form-group
             %label.col-md-4.control-label IP
             .col-md-7
                 = f.text_field :ip, value: @server.attributes['ip'], :class => "form-control"
         .form-group
             %label.col-md-4.control-label Port
             .col-md-7
-                = f.text_field :port, :class => "form-control"
-        .form-group
-            %label.col-md-4.control-label Current Port
-            .col-md-7
                 = f.text_field :current_port, :disabled => true, :class => "form-control"
+    %h4 Deployment
+    .form-horizontal
+        - if @server.machine_id
+            .form-group
+                %label.col-md-4.control-label Machine ID
+                .col-md-7
+                    = f.text_field :machine_id, :disabled => true, :class => "form-control"
+        .form-group
+            %label.col-md-4.control-label Ensure
+            .col-md-7
+                = f.select :ensure, [nil, "running", "stopping"], {}, :class => "form-control"
+        .form-group
+            %label.col-md-4.control-label Server Path
+            .col-md-7
+                = f.text_field :server_path, :class => "form-control"
+        .form-group
+            %label.col-md-4.control-label Plugins Path
+            .col-md-7
+                = f.text_field :plugins_path, :class => "form-control"
+        - if @server.pgm?
+            .form-group
+                %label.col-md-4.control-label Rotations Path
+                .col-md-7
+                    = f.text_field :rotations_path, :class => "form-control"
+            .form-group
+                %label.col-md-4.control-label Maps Path
+                .col-md-7
+                    = f.text_field :maps_path, :class => "form-control"
+            .form-group
+                %label.col-md-4.control-label Maps Branch
+                .col-md-7
+                    = f.text_field :maps_branch, :class => "form-control"
     %h4 DNS
     .form-horizontal
         .form-group
@@ -149,19 +161,3 @@
                 %label.col-md-4.control-label DNS Record
                 .col-md-7
                     = f.text_field :dns_record_, :disabled => true, :value => "#{@dns_record.name} #{@dns_record.ttl} #{@dns_record.type} #{@dns_record.content}", :class => "form-control"
-    %h4 Dynamics
-    .form-horizontal
-        = f.fields_for :dynamics do |dynamics|
-            .form-group
-                .checkbox.col-md-7.col-md-offset-4
-                    %label
-                        = dynamics.check_box :enabled, :checked => @server.dynamics["enabled"]
-                        Enabled
-            .form-group
-                %label.col-md-4.control-label Order
-                .col-md-7
-                    = dynamics.text_field :order, :value => @server.dynamics["order"], :class => "form-control"
-            .form-group
-                %label.col-md-4.control-label Size
-                .col-md-7
-                    = dynamics.text_field :size, :value => @server.dynamics["size"], :class => "form-control"
