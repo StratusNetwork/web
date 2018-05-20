@@ -62,11 +62,11 @@
         .form-group
             %label.col-md-4.control-label Team
             .col-md-7
-                = team_select_field :server, :team, @server.team
+                = team_select_field :server, :team_id, @server.team
         .form-group
             %label.col-md-4.control-label Tournament
             .col-md-7
-                = tournament_select_field :server, :tournament, @server.tournament
+                = tournament_select_field :server, :tournament_id, @server.tournament
         .form-group
             %label.col-md-4.control-label Settings Profile
             .col-md-7
