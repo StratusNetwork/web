@@ -141,10 +141,6 @@ module Admin
 
             server[:realms] = server[:realms].split
 
-            server["dynamics"]["enabled"] = server["dynamics"]["enabled"].parse_bool
-            server["dynamics"]["order"]   = server["dynamics"]["order"].to_i
-            server["dynamics"]["size"]    = server["dynamics"]["size"].to_i
-
             %w{dns_record_id update_server_path rotation_file team_id tournament_id ip}.each do |f|
                 server[f] = nil if server[f].blank?
             end
