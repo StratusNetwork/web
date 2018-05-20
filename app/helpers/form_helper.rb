@@ -39,6 +39,14 @@ module FormHelper
         model_select_field(Server, object_name, field_name, :name, collection, multiple, options)
     end
 
+    def team_select_field(object_name, field_name, collection = [], multiple = false, **options)
+        model_select_field(Team, object_name, field_name, :name, collection, multiple, options)
+    end
+
+    def tournament_select_field(object_name, field_name, collection = [], multiple = false, **options)
+        model_select_field(Tournament, object_name, field_name, :name, collection, multiple, options)
+    end
+
     # Render a Select2 form control for selecting multiple users,
     # featuring typeahead and all that fancy junk. The value
     # submitted by the form will be plain (unquoted) document IDs
@@ -52,7 +60,13 @@ module FormHelper
     #   search_field - the field to query for in the collection (e.g. :username)
     #
     def model_select_field(search_class, object_name, select_field, search_field, collection = [], multiple = true, **options)
-        collection = collection.compact
+        collection = if collection == nil
+            []
+        elsif collection.is_a?(Array)
+            collection.compact
+        else
+            [collection]
+        end
         field_tag = ActionView::Helpers::Tags::HiddenField.new(object_name, select_field, self, value: collection.map(&:id).join(','), **options)
         script = javascript_tag <<-JS
             $(document).ready(function() {
@@ -62,6 +76,8 @@ module FormHelper
                     multiple: #{multiple},
                     minimumInputLength: 1,
                     maximumInputLength: 16,
+                    allowClear: true,
+                    placeholder: " ",
                     formatInputTooShort: "Start typing a #{search_class.name} name",
                     initSelection: function(element, callback) {
                         callback(#{ collection.map{|model| {id: model.id, text: model[search_field]} }.to_json });

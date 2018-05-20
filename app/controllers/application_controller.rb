@@ -199,14 +199,19 @@ class ApplicationController < CommonController
     end
 
     def model_search
-        query, search_class, search_field = params[:request].split(',', 3)
-        @matches = search_class.constantize
-                               .where(search_field => /^#{query}/i)
-                               .order_by(search_field => 1)
-                               .limit(5)
-                               .to_a
-                               .map(&:api_document)
-        render :json => {results: @matches.map{|model| {id: model.id.to_s, text: model[search_field]} } }
+        if user_signed_in?
+            query, search_class, search_field = params[:request].split(',', 3)
+            @matches = search_class.constantize
+                                   .where(search_field => /^#{query}/i)
+                                   .order_by(search_field => 1)
+                                   .limit(5)
+                                   .to_a
+                                   .map(&:api_document)
+            if !@matches.empty? && !@matches.first.key?(search_field)
+                @matches = [] # Only allow api_property fields to be searched
+            end
+            render :json => {results: @matches.map{|model| {id: model["_id"], text: model[search_field]} } }
+        end
     end
 
     def load_models
