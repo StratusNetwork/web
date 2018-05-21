@@ -1,5 +1,5 @@
 .col-md-6
-    %h4 Main Details
+    %h4 Identity
     .form-horizontal
         .form-group
             %label.col-md-4.control-label ID
@@ -50,36 +50,43 @@
             %label.col-md-4.control-label Current Visibility
             .col-md-7
                 = f.select :visibility, Server::Visibility.names, {}, :class => "form-control"
-        .form-group
-            .checkbox.col-md-7.col-md-offset-4
-                %label
-                    = f.check_box :whitelist_enabled
-                    Whitelisted
-        .form-group
-            %label.col-md-4.control-label Operators
-            .col-md-7
-                = user_select_field2 :server, :operator_ids, @server.operators
-        .form-group
-            %label.col-md-4.control-label Team
-            .col-md-7
-                = team_select_field :server, :team_id, @server.team
-        .form-group
-            %label.col-md-4.control-label Tournament
-            .col-md-7
-                = tournament_select_field :server, :tournament_id, @server.tournament
-        .form-group
-            %label.col-md-4.control-label Settings Profile
-            .col-md-7
-                = f.text_field :settings_profile, :class => "form-control"
-        .form-group
-            %label.col-md-4.control-label Resource Pack
-            .col-md-7
-                = f.select :resource_pack_id, [nil, *ResourcePack.all.map{|rp| [rp.name, rp.id] }], {}, :class => "form-control"
-        .form-group
-            .checkbox.col-md-7.col-md-offset-4
-                %label
-                    = f.check_box :resource_pack_fast_update
-                    Resource pack fast update
+    - unless @server.bungee?
+        %h4 Settings
+        .form-horizontal
+            .form-group
+                .checkbox.col-md-7.col-md-offset-4
+                    %label
+                        = f.check_box :whitelist_enabled
+                        Whitelisted
+            .form-group
+                %label.col-md-4.control-label Operators
+                .col-md-7
+                    = user_select_field2 :server, :operator_ids, @server.operators
+            .form-group
+                %label.col-md-4.control-label Team
+                .col-md-7
+                    = team_select_field :server, :team_id, @server.team
+            .form-group
+                %label.col-md-4.control-label Tournament
+                .col-md-7
+                    = tournament_select_field :server, :tournament_id, @server.tournament
+            .form-group
+                %label.col-md-4.control-label Settings Profile
+                .col-md-7
+                    = f.text_field :settings_profile, :class => "form-control"
+            .form-group
+                %label.col-md-4.control-label X-Server Profile
+                .col-md-7
+                    = f.text_field :cross_server_profile, :class => "form-control"
+            .form-group
+                %label.col-md-4.control-label Resource Pack
+                .col-md-7
+                    = f.select :resource_pack_id, [nil, *ResourcePack.all.map{|rp| [rp.name, rp.id] }], {}, :class => "form-control"
+            .form-group
+                .checkbox.col-md-7.col-md-offset-4
+                    %label
+                        = f.check_box :resource_pack_fast_update
+                        Resource pack fast update
         .form-group
             .col-md-8.col-md-offset-4
                 .btn-group
@@ -131,33 +138,34 @@
                 %label.col-md-4.control-label Maps Branch
                 .col-md-7
                     = f.text_field :maps_branch, :class => "form-control"
-    %h4 DNS
-    .form-horizontal
-        .form-group
-            .checkbox.col-md-7.col-md-offset-4
-                %label
-                    = f.check_box :dns_enabled
-                    Enabled
-        .form-group
-            .checkbox.col-md-7.col-md-offset-4
-                %label
-                    = f.check_box :dns_scheduled
-                    Scheduled
-        .form-group
-            %label.col-md-4.control-label Start
-            .col-md-7
-                = f.text_field :dns_window_start, value: @dns_window_start, autocomplete: 'off', :class => "form-control"
-        .form-group
-            %label.col-md-4.control-label Stop
-            .col-md-7
-                = f.text_field :dns_window_stop, value: @dns_window_stop, autocomplete: 'off', :class => "form-control"
-                %span.help-block HH[:MM[:SS]]
-        .form-group
-            %label.col-md-4.control-label DNS ID
-            .col-md-7
-                = f.text_field :dns_record_id, :class => "form-control"
-        - if @dns_record
+    - if @server.bungee?
+        %h4 DNS
+        .form-horizontal
             .form-group
-                %label.col-md-4.control-label DNS Record
+                .checkbox.col-md-7.col-md-offset-4
+                    %label
+                        = f.check_box :dns_enabled
+                        Enabled
+            .form-group
+                .checkbox.col-md-7.col-md-offset-4
+                    %label
+                        = f.check_box :dns_scheduled
+                        Scheduled
+            .form-group
+                %label.col-md-4.control-label Start
                 .col-md-7
-                    = f.text_field :dns_record_, :disabled => true, :value => "#{@dns_record.name} #{@dns_record.ttl} #{@dns_record.type} #{@dns_record.content}", :class => "form-control"
+                    = f.text_field :dns_window_start, value: @dns_window_start, autocomplete: 'off', :class => "form-control"
+            .form-group
+                %label.col-md-4.control-label Stop
+                .col-md-7
+                    = f.text_field :dns_window_stop, value: @dns_window_stop, autocomplete: 'off', :class => "form-control"
+                    %span.help-block HH[:MM[:SS]]
+            .form-group
+                %label.col-md-4.control-label DNS ID
+                .col-md-7
+                    = f.text_field :dns_record_id, :class => "form-control"
+            - if @dns_record
+                .form-group
+                    %label.col-md-4.control-label DNS Record
+                    .col-md-7
+                        = f.text_field :dns_record_, :disabled => true, :value => "#{@dns_record.name} #{@dns_record.ttl} #{@dns_record.type} #{@dns_record.content}", :class => "form-control"

@@ -79,5 +79,6 @@ PGM::Application.routes.draw do
         models :deaths
         models :objectives
         models :punishments
+        models :chats
     end
 end

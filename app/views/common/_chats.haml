@@ -1,0 +1,26 @@
+.table-container
+    %table.table.table-bordered.table-striped
+        %thead
+            %tr
+                - if sender
+                    %th{:width => "15%"} Sender
+                %th{:width => "40%"} Message
+                %th{:width => "10%"} Type
+                %th{:width => "15%"} Match
+                - if server
+                    %th{:width => "15%"} Server
+                %th{:width => "20%"} Timestamp
+        %tbody
+            - chats.each do |c|
+                %tr
+                    - if sender
+                        %td= c.sender ? link_to_user(c.sender) : "Console"
+                    %td= c.message
+                    %td= c.type.to_s.titleize
+                    %td= c.match ? content_tag(:a, c.match.map.name, :href => "/matches/#{c.match.id}") : ""
+                    - if server
+                        %td= content_tag(:a, c.server.display_name, :href => main_app.play_path)
+                    %td{:rel => "tooltip", :title => format_time(c.sent_at), :data => {:placement => "top", :container => "body"}}
+                        %a
+                            = time_ago_in_words(c.sent_at, false, :vague => true)
+                            ago

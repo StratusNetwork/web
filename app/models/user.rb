@@ -18,6 +18,7 @@ class User
     include Beta
     include Big3Migration
     include Channels
+    include Chat
     include Classes
     include Current
     include Engagements

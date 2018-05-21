@@ -133,6 +133,8 @@ class UsersController < ApplicationController
 
         @alts_final = @player.alts if current_user && current_user.can_index_alts?('all')
 
+        @chats = Chat.sender(@player).limit(20) if current_user_safe.has_permission?('chat', 'recent', false)
+
         @actions = []
         @actions << ["Edit profile", :get, edit_admin_user_path(@player.uuid)] if current_user_safe.has_permission?('user', 'admin', true) && @player.uuid
         @actions << ["Create a report", :get, "/reports/new/#{@player.username}"] if @player != current_user && Report::can_index?('all',current_user)

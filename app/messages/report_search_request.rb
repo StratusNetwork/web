@@ -1,5 +1,5 @@
 class ReportSearchRequest < FindRequest
-    field :family_ids
+    field :cross_server
     field :server_id
     field :user_id
 
