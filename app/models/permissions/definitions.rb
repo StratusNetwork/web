@@ -45,6 +45,10 @@ module Permissions
                 boolean :manage, "manage streams (overrides all other stream permissions)"
             end
 
+            domain :chat do
+                boolean :recent, "view recent chat messages of users"
+            end
+
             domain :banner do
                 boolean :admin, "manage the banner admin area"
             end

@@ -158,6 +158,9 @@
                     - unless @reports.values.all?(&:empty?)
                         %li
                             %a{:href => "#reports", :data => {:toggle => "tab"}} Reports
+                    - if @chats.exists? 
+                        %li
+                            %a{:href => "#chats", :data => {:toggle => "tab"}} Chats
                     - if @alts_final || current_user_safe.has_permission?("misc", "name_change", "index", "all") || current_user_safe.has_permission?("misc", "name_change", "index", "own") && @same_user
                         %li
                             %a{:href => "#alts", :data => {:toggle => "tab"}} Alts
@@ -367,6 +370,15 @@
                                                 = heading
                                                 = render_user(@player)
                                             = render :partial => "reports/#{reports[0].scope}/list", :locals => {:reports => reports}
+                    - if @chats.exists?
+                        .tab-pane#chats
+                            .row
+                                .col-md-12
+                                    - if @chats.count >= 1
+                                        = render :partial => 'common/chats', :locals => {:chats => @chats, :sender => false, :server => true}
+                                    - else
+                                        %center
+                                            %p No recent chats to display.
                     - if @alts_final || current_user_safe.has_permission?("misc", "name_change", "index", "all") || current_user_safe.has_permission?("misc", "name_change", "index", "own") && @same_user
                         .tab-pane#alts
                             .row

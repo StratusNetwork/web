@@ -134,13 +134,13 @@ class Report
 
             if request
                 if request.server_id
-                    documents = documents.where(server_id: request.server_id)
                     hint = INDEX_server
-                elsif request.family_ids
-                    documents = documents.in(family: request.family_ids)
-                    hint = INDEX_family
+                    if request.cross_server
+                        documents = documents.in(server_id: Server.with_cross_servers(Server.need(request.server_id)).map(&:id))
+                    else
+                        documents = documents.where(server_id: request.server_id)
+                    end
                 end
-
                 if request.user_id
                     documents = documents.reported(User.need(request.user_id))
                     hint = INDEX_reported_created_at

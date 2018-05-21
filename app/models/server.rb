@@ -16,6 +16,7 @@ class Server
     include ApiModel
     include Bungees
     include Connectivity
+    include CrossServer
     include Deployment
     include Dns
     include Dynamics
