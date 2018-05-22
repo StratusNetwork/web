@@ -158,7 +158,7 @@
                     - unless @reports.values.all?(&:empty?)
                         %li
                             %a{:href => "#reports", :data => {:toggle => "tab"}} Reports
-                    - if @chats.exists? 
+                    - unless @chats.nil?
                         %li
                             %a{:href => "#chats", :data => {:toggle => "tab"}} Chats
                     - if @alts_final || current_user_safe.has_permission?("misc", "name_change", "index", "all") || current_user_safe.has_permission?("misc", "name_change", "index", "own") && @same_user
@@ -370,7 +370,7 @@
                                                 = heading
                                                 = render_user(@player)
                                             = render :partial => "reports/#{reports[0].scope}/list", :locals => {:reports => reports}
-                    - if @chats.exists?
+                    - unless @chats.nil?
                         .tab-pane#chats
                             .row
                                 .col-md-12
