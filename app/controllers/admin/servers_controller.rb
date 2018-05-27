@@ -149,7 +149,7 @@ module Admin
                 server[f] = parse_time_of_day(server[f])
             end
 
-            server[:operator_ids] = server[:operator_ids].split(/,/)
+            server[:operator_ids] = (server[:operator_ids] || []).split(/,/)
             server[:resource_pack] = ResourcePack.find(server[:resource_pack_id]) unless server[:resource_pack_id].blank?
 
             @server.without_attr_protection do
