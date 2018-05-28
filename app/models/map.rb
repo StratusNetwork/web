@@ -59,6 +59,7 @@ class Map
         skywars:    {name: "Skywars"},
         survival:   {name: "Survival Games"},
         payload:    {name: "Payload"},
+        uhc:        {name: "Ultra Hardcore"},
     }
 
     field :_id,             type: String, overwrite: true # Derived from other fields, see #normalize
