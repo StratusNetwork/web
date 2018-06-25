@@ -262,7 +262,7 @@
                     .tab-pane#trophycase
                         .row
                             - if @trophy_count > 0
-                                = render :partial => "trophies", :locals => {:trophies => @player.trophies.reverse}
+                                = render :partial => "trophies", :locals => {:trophies => @player.trophies.by_priority}
                             - else
                                 .col-md-12
                                     %center

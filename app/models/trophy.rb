@@ -13,16 +13,23 @@ class Trophy
 
     field :name, type: String
     field :description, type: String
+    field :priority, type: Integer, default: 100
 
     field :color, type: String, default: '#212121'.freeze
     field :css_class, type: String
     field :background, type: String, default: '#f5f5f5'.freeze
 
-    props = [:name, :description, :color, :css_class, :background]
+    props = [:name, :description, :priority, :color, :css_class, :background]
     attr_accessible *props
     attr_buildable *props
     validates_presence_of *props
     api_property *props
+
+    scope :by_priority, asc(:priority)
+
+    def by_priority
+        asc(:priority)
+    end
 
     # LEGACY
     api_synthetic :identifier do
