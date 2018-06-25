@@ -11,7 +11,7 @@ Repository.define do
             repository :projectares do
                 title           "ProjectAres"
                 description     "Our custom Bukkit plugins (such as PGM) that control matches and add network features to Minecraft"
-                repo            "ProjectAres"
+                repo            "projectares"
                 open?           true
             end
 
@@ -25,21 +25,21 @@ Repository.define do
             repository :web do
                 title           "Website"
                 description     "Our main website and backend repository"
-                repo            "OCN"
+                repo            "web"
                 open?           true
             end
 
             repository :static do
                 title           "Data"
-                description     "Our static configuration data files for the backend"
-                repo            "Data"
+                description     "Our static configuration data files for the servers"
+                repo            "data"
                 open?           true
             end
 
             repository :docs do
                 title           "XML Documentation"
                 description     "Our XML documentation website for defining map specific features"
-                repo            "XML-Documentation"
+                repo            "xml"
                 branch          "gh-pages"
                 open?           true
             end
