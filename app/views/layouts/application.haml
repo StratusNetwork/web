@@ -5,6 +5,10 @@
         %meta{:charset => "utf-8"}
         %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
         %meta{:name => "theme-color", :content => "#337AB7"}
+        %meta{:property => "og:title", :content => "Stratus Network - Minecraft PvP"}
+        %meta{:property => "og:type", :content => "website"}
+        %meta{:property => "og:url", :content => "https://stratus.network"}
+        %meta{:property => "og:image", :content => "https://stratus.network/assets/logo_cloud.png"}
         %title
             - if content_for? :title
                 #{yield :title} - #{ORG::NAME}
