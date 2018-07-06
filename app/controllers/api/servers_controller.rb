@@ -33,10 +33,11 @@ module Api
         def by_name
             name_search = params[:name_search]
             safe_score = 0.9 # score above which the match is considered safe
+            bungee = boolean_param(:bungee_name, default: false) # Whether to search by bungee_name
 
             # use LiquidMetal algorithm to rank servers based on score
             results = Server.searchable.datacenter(params[:datacenter]).map do |s|
-                { :server => s, :score => s.name.score(name_search) }
+                { :server => s, :score => (bungee ? s.bungee_name : s.name).score(name_search) }
             end
             .select { |result| result[:score] >= safe_score }
             .sort { |a, b| b[:score] <=> a[:score] }
