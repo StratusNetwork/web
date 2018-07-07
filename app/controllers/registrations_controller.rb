@@ -46,17 +46,27 @@ class RegistrationsController < Devise::RegistrationsController
             return redirect_to_back edit_user_registration_path, :alert => 'You have to be premium to update that setting!'
         end
 
-        if form[:premium_web_theme].present?
-            @user.web_theme = nil
-        end
-
-        if form[:web_theme].present?
-            @user.premium_web_theme = nil
-        end
-
         return redirect_to_back edit_user_registration_path, :alert => 'Invalid gender specified' unless ['Male', 'Female', 'Other', '', nil].include? form[:gender]
         return redirect_to_back edit_user_registration_path, :alert => 'Invalid theme specified' unless ['Default', 'Dark Theme', '', nil].include? form[:web_theme]
         return redirect_to_back edit_user_registration_path, :alert => 'Invalid theme specified' unless ['Default', 'Flatly', '', nil].include? form[:premium_web_theme]
+
+        # User has both a default and premium theme selected in the form.
+        # If the user has a default premium theme, and a selected web theme, the web theme is used.
+        # If the user has a selected premium theme, and a default web theme, the premium theme is used.
+        # If the user has both a selected premium and web theme, the premium theme takes priority.
+        # FIXME: In hindsight, being premium should just add on to the default "web" themes list instead of creating a separate forum field.
+        if form[:premium_web_theme].present? && form[:web_theme].present?
+            prem = form[:premium_web_theme]
+            web = form[:web_theme]
+            if web == 'Default' && prem == 'Default'
+              @user.web_theme = nil
+              @user.premium_web_theme = nil
+            elsif prem == 'Default'
+              @user.premium_web_theme = nil
+            else
+              @user.web_theme = nil
+            end
+        end
 
         email_available = User.email_available?(form[:email])
         email_changed = (@user.email != form[:email].to_s.strip && !form[:email].to_s.strip.blank?)
