@@ -79,8 +79,9 @@ class Server
                 self.dns_toggled_at = Time.now.utc if self.dns_enabled_changed?
                 true
             end
-
-            around_save :update_dns_record_on_save
+               
+            # FIXME: Emergency, Cloudflare disabled APIv1 and errors are thrown
+            # around_save :update_dns_record_on_save
         end
 
         module ClassMethods
