@@ -129,7 +129,7 @@
                                 .name kk
                             .total>
                                 .number= big_stat(@player.raindrops) ? number_to_human(@player.raindrops, :format => "%n%u", :units => { :thousand => "k", :million => "m" }, :precision => 3) : @player.raindrops
-                                .name droplets
+                                .name= "droplet".pluralize(@player.raindrops)
 %section
     .row
         .col-md-12
@@ -170,15 +170,15 @@
                             .col-md-3.col-sm-6
                                 %h4.strong{:rel => "tooltip", :title => "First joined on " + vague_format_time(@initial_join), :data => {:placement => "top"}}
                                     = @days_here
-                                    %small.strong days since first seen
+                                    %small.strong= "day".pluralize(@days_here) + " since first seen"
                             .col-md-3.col-sm-6
                                 %h4.strong
                                     = @hours_played
-                                    %small.strong hours played
+                                    %small.strong= "hour".pluralize(@hours_played) + " played"
                             .col-md-3.col-sm-6
                                 %h4.strong
                                     = @teams_joined
-                                    %small.strong teams joined
+                                    %small.strong= "team".pluralize(@teams_joined) + " joined"
                         .row
                             - if !@player.public_email.to_s.empty?
                                 .col-md-3.col-sm-6

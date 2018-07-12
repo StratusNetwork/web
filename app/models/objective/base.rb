@@ -73,8 +73,8 @@ module Objective
                 end
             end
 
-            def total_description # override me
-                "#{type_name} completed"
+            def total_description(count) # override me
+                "#{type_name.pluralize(count)} completed"
             end
 
             def join_matches(objectives = all, matches: Match.all)

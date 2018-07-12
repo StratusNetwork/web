@@ -2,8 +2,8 @@ module Objective
     class WoolPlace < Base
         include Colored
 
-        def self.total_description
-            "wools placed"
+        def self.total_description(count)
+            "#{"wool".pluralize(count)} placed"
         end
 
         def name
