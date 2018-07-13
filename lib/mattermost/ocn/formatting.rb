@@ -8,7 +8,7 @@ module Mattermost
             end
 
             def avatar_url(user, size: 8)
-                "#{Rails.configuration.avatar_base_url}/#{user.uuid}/#{size}@2x.png"
+                "#{Rails.configuration.avatar_base_url}/#{user.uuid}/#{size}"
             end
 
             def user_profile_url(user)
