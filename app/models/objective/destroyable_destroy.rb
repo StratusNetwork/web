@@ -9,8 +9,8 @@ module Objective
         api_property *required
         validates_presence_of *required
 
-        def self.total_description
-            "monuments destroyed"
+        def self.total_description(count)
+            "#{"monument".pluralize(count)} destroyed"
         end
 
         def percentage

@@ -7,8 +7,8 @@ module Objective
         api_property :material
         validates_presence_of :material
 
-        def self.total_description
-            "cores leaked"
+        def self.total_description(count)
+            "#{"core".pluralize(count)} leaked"
         end
 
         def name
