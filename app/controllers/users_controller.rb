@@ -52,7 +52,9 @@ class UsersController < ApplicationController
 
         @engagements = @player.engagements.ignored(false).family(Ranking::FAMILY_ID).lte(match_joined_at: latest_visible).desc(:match_joined_at).limit(40)
 
-        @maps = Map.author(@player).loaded.order_by_rating.default_variants.select(&:can_view?)
+        @maps = []
+        # FIXME(electroid): Map images increase profile load times dramatically
+        # Map.author(@player).loaded.order_by_rating.default_variants.select(&:can_view?)
         @show_map_ratings = true
 
         @kills = []
