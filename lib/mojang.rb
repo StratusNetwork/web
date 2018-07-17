@@ -25,20 +25,20 @@ module Mojang
         end
 
         def username_url(name)
-            "https://api.mojang.com/users/profiles/minecraft/#{name}"
+            "https://ashcon.app/minecraft/user/#{name}"
         end
 
         def username_to_uuid(name)
             api_get(username_url(name)) do |io|
-                JSON.parse(io.read)['id']
+                JSON.parse(io.read)['uuid']
             end
         end
 
         def username_taken?(name)
-            case code = open("https://api.mojang.com/users/profiles/minecraft/#{name}").status[0].to_i
+            case code = open(username_url(name)).status[0].to_i
                 when 200
                     true
-                when 204
+                when 404
                     false
                 else
                     log "Unexpected response code #{code} from name check: #{url}"
