@@ -35,7 +35,7 @@ PGM::Application.configure do
 
     config.site_base_url = "https://#{ORG::DOMAIN}"
     # See https://github.com/Electroid/mojang-api for more information
-    config.avatar_base_url = "https://ashcon.app/minecraft/avatar"
+    config.avatar_base_url = "https://api.ashcon.app/mojang/v1/avatar"
 
     # Use localhost for avatar URLs
     config.local_avatars = false
