@@ -25,7 +25,7 @@ module Mojang
         end
 
         def username_url(name)
-            "https://ashcon.app/minecraft/user/#{name}"
+            "https://api.ashcon.app/mojang/v1/user/#{name}"
         end
 
         def username_to_uuid(name)
