@@ -35,7 +35,12 @@ module Mojang
         end
 
         def username_taken?(name)
-            case code = open(username_url(name)).status[0].to_i
+            code = begin
+                open(username_url(name)).status[0].to_i
+            rescue OpenURI::HTTPError => err
+                err.io.status[0].to_i
+            end
+            case code
                 when 200
                     true
                 when 404
