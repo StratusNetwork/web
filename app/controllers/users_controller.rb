@@ -91,7 +91,7 @@ class UsersController < ApplicationController
         @forum_posts = Forem::Post.latest_by(@player).count
         @topics_created = Forem::Topic.latest_by(@player).count
 
-        @objectives = [Objective::WoolPlace, Objective::CoreBreak, Objective::DestroyableDestroy].map do |klass|
+        @objectives = [Objective::WoolPlace, Objective::CoreBreak, Objective::DestroyableDestroy, Objective::FlagCapture].map do |klass|
             q = klass.user(@player).lte(date: latest_visible)
             [klass, q.count, q.desc(:date).limit(24).to_a]
         end.reject{|_, count, _| count == 0 }.sort_by{|_, count, _| -count }
