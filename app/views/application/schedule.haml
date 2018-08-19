@@ -1,0 +1,15 @@
+- content_for(:title) {"UHC Schedule"}
+
+%section
+    .page-header
+        %h2
+            UHC Schedule
+
+    .row
+        .col-md-12
+            %iframe{:frameborder => "0",
+                    :height => "600",
+                    :scrolling => "no",
+                    :src => "https://calendar.google.com/calendar/embed?src=#{@source}&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&wkst=1&bgcolor=%23f5f5f5&ctz=#{@tz}",
+                    :style => "border-width:0",
+                    :width => "100%"}

@@ -168,6 +168,12 @@ class ApplicationController < CommonController
         @subtitle = @streams.first.status_text if @streams.first
     end
 
+    def schedule
+        @source = "j9eeoiq0jeb7qicstkk6ann1p0%40group.calendar.google.com"
+        @tz = @timezone.nil? ? "America/Chicago" : @timezone.name
+        @tz = CGI.escape(@tz)
+    end
+
     def inquire
         params.permit(inquiry: [:username, :email, :subject, :message])
         params.require(:inquiry)
