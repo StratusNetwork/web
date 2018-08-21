@@ -32,7 +32,7 @@ class Group
     #   'realm2' => ['perm3', 'perm4', ...] }
     field :minecraft_permissions, type: Hash, default: {}.freeze
 
-    Flair = Struct.new(:symbol, :color, :priority)
+    Flair = Struct.new(:symbol, :color, :priority, :visible_while_participating)
 
     # { realm => {symbol: ... , color: ...} }
     field :minecraft_flair, type: Hash, default: {}.freeze
@@ -41,7 +41,7 @@ class Group
 
     attr_cached :minecraft_flair do
         read_attribute(:minecraft_flair).mash do |realm, flair|
-            [realm, Flair.new(flair['symbol'], flair['color'], flair['priority'])]
+            [realm, Flair.new(flair['symbol'], flair['color'], flair['priority'], flair['visible_while_participating'].nil? ? true : flair['visible_while_participating'])]
         end
     end
 
