@@ -4,7 +4,7 @@
     .page-header
         %h2
             Staff
-            %small These folks help run and maintain the network
+            %small These people help run and maintain the network
     - @groups.each do |group|
         - next if group.magic? || !User.in_group(group).exists?
         .row.staff-group
