@@ -58,7 +58,7 @@
                         %i.fa.fa-comments
                         Forum
                 %li.dropdown{:class => (current_page?(main_app.schedule_path) ? "active" : nil )}
-                    %a.dropdown-toggle{:href => "#", :data => {:toggle => "dropdown"}}
+                    %a.dropdown-toggle{:href => "#", :data => {:toggle => "dropdown"}, :style => (REDIS.get(CalendarWorker::ORIGIN_KEY) == 'uhc' ? "color:red" : nil)}
                         %i.fa.fa-heartbeat
                         UHC
                         %b.caret
