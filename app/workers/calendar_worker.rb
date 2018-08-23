@@ -75,10 +75,10 @@ class CalendarWorker
         description: event.description,     # Description of the event (HTML)
         # For all day events:
         start_date: event.start.date,       # Date the event starts for all day events
-        end_date: event.end.date,           # Date the event events for all day events
+        end_date: event.end.date,           # Date the event ends for all day events
         # All day events don't have these:
         start_time: event.start.date_time,  # Date and time the event starts for non all day events
-        end_time: event.end.date_time       # Date and time the event starts for non all day events
+        end_time: event.end.date_time       # Date and time the event ends for non all day events
       }
     end
 end
