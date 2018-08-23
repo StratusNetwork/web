@@ -26,11 +26,11 @@ module ApplicationHelper
         time.strftime("%b #{time.day.ordinalize} %Y")
     end
 
-    def format_time(time, zone: nil, show_zone: false)
+    def format_time(time, zone: nil, date: true, show_zone: false)
         zone ||= @timezone
         time = time.in_time_zone(zone) if zone
 
-        text = "%B #{time.day.ordinalize}, %Y - %l:%M %p"
+        text = (date ? "%B #{time.day.ordinalize}, %Y -" : "") + " %l:%M %p"
         text += " #{time.zone}" if show_zone
 
         time.strftime(text)
