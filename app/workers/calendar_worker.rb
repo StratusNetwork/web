@@ -25,7 +25,7 @@ class CalendarWorker
           logger.info "Getting events for " + cal.id
 
           # Save ALL upcoming events
-          items = GOOGLE::CALENDAR.list_events(cal.source, time_min: (Time.now).to_datetime.rfc3339).items
+          items = GOOGLE::CALENDAR.list_events(cal.source, time_min: DateTime.now.beginning_of_day.rfc3339).items
           next if items.empty? # Calendar is empty
 
           full = {}
