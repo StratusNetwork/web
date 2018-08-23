@@ -3,7 +3,7 @@
 
 source 'http://rubygems.org'
 
-gem 'rails', '~> 4.2'                   # Ruby on Rails
+gem 'rails', '4.2.4'                   # Ruby on Rails
 gem 'protected_attributes'
 gem 'bundler'                           # Gem management
 gem 'mongoid', '~> 5.0.0'               # MongoDB ORM
@@ -15,7 +15,7 @@ gem 'uuid'
 gem 'devise'                            # User registration and authentication
 gem 'tlsmail'
 gem 'kaminari'                          # Pagination
-gem 'simple_form'
+gem 'simple_form', '3.3.0'
 gem 'workflow', '1.0.0'
 gem 'workflow_on_mongoid'
 gem 'git'
@@ -23,14 +23,14 @@ gem 'activemerchant'
 gem 'nokogiri'
 gem 'sanitize', '2.1.0'
 gem 'redis'
-gem 'github_api'
+gem 'github_api', '0.18.2'
 gem 'gitlab'
 gem 'peek'
 gem 'peek-redis'
 gem 'peek-rblineprof', :platform => :ruby # doesn't work on Windows
 gem 'peek-performance_bar'
 gem 'peek-git'
-gem 'jwt'
+gem 'jwt', '1.5'
 gem 'netaddr', '~> 1.5.0'
 gem 'tzinfo'
 gem 'tzinfo-data'
@@ -50,7 +50,8 @@ gem 'serverengine'                      # Pre-fork daemon framework used for wor
 gem 'select2-rails'                     # Select2 jQuery widget, Rails integration
 gem 'dogapi'                            # DataDog API client
 gem 'chunky_png'                        # Image processor (used for skins)
-gem 'google-api-client'                 # Client for all things Google
+gem 'google-api-client', '0.9.8'        # Client for all things Google
+gem 'googleauth', '0.5'                 # Authentication for Google
 gem 'braintree'                         # Payment processor
 gem 'geoip'                             # IP lookup utility
 gem 'droplet_kit'                       # Digital Ocean client
