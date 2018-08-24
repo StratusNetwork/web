@@ -1,6 +1,6 @@
 module Api
     class UhcLeaderboardEntriesController < ModelController
-        controller_for Chat
+        controller_for UhcLeaderboardEntry
 
         def get_or_create
             user = User.find(params['user_id']) or raise NotFound

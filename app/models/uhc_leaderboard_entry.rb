@@ -24,7 +24,7 @@ class UhcLeaderboardEntry
     validates_presence_of *required
 
     api_synthetic :user do
-        user.api_player_id
+        user.player_id
     end
 
     def self.for_user(user)
