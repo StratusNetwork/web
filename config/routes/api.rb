@@ -80,5 +80,11 @@ PGM::Application.routes.draw do
         models :objectives
         models :punishments
         models :chats
+
+        models :uhc_leaderboard_entries do
+            collection do
+                get "get_or_create/:user_id", action: :get_or_create
+            end
+        end
     end
 end
