@@ -83,7 +83,7 @@ PGM::Application.routes.draw do
 
         models :uhc_leaderboard_entries do
             collection do
-                get "get_or_create/:user_id", action: :get_or_create
+                get "get_or_create/:player_id", action: :get_or_create
             end
         end
     end
