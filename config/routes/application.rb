@@ -112,6 +112,11 @@ PGM::Application.routes.draw do
         post 'reassign_leader'
     end
 
+    scope controller: 'uhc', path: "/uhc" do
+        get 'leaderboard'
+        get 'schedule'
+    end
+
     devise_for :users, :controllers => {:confirmations => "confirmations", :registrations => "registrations"}
     devise_scope :user do
         get '/login' => 'devise/sessions#new'

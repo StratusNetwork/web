@@ -1,0 +1,64 @@
+- content_for(:title) {"UHC Leaderboards"}
+
+%section
+    .page-header.playerstats
+        %h2
+            UHC Leaderboard
+    .row
+        .col-md-12
+            .form-inline.pull-right
+                .form-group
+                    %label.sr-only Find Player
+                    .input-group
+                        %input.form-control.input-sm.typeahead#uhc-search-username{:name => "user", :type => "text", :placeholder => "Username"}
+                        .input-group-btn
+                            %button.btn.btn-sm.btn-primary#uhc-search-button Find Player
+                - if user_signed_in?
+                    .form-group
+                        = link_to 'Find Me', url_for(params.merge(:user => current_user_safe.username)), class: "btn btn-sm btn-info"
+            .form-inline
+                .form-group
+                    %label Sort leaderboard by
+                    %select.form-control.input-sm.uhc-control#uhc-sort
+                        - @sorts.each do |key, value|
+                            %option{:value => key, :selected => @sort == key}= value
+            %br
+    .row
+        .col-md-12
+            = paginate @entries
+            .table-container
+                %table.table.table-bordered.table-striped
+                    %thead
+                        %tr
+                            %th{:width => "8%"} #
+                            %th{:width => "12%"} Gold Mined
+                            %th{:width => "8%"} Kills
+                            %th{:width => "12%"} Wins (Solo)
+                            %th{:width => "12%"} Wins (Teams)
+                            %th{:width => "15%"} Wins (Overall)
+                            %th Name
+                    %tbody
+                        - count = (@entries.current_page - 1) * @per_page
+                        - @entries.each do |entry|
+                            - user = entry.user
+                            %tr{class: user && user == @user && 'info'}
+                                - count += 1
+                                %td
+                                    = count
+                                %td
+                                    - gold = entry.gold_solo + entry.gold_teams
+                                    = big_stat(gold) ? number_to_human(gold, :format => "%n%u", :units => { :thousand => "k", :million => "m" }, :precision => 3) : gold
+                                %td
+                                    - kills = entry.kills_solo + entry.kills_teams
+                                    = big_stat(kills) ? number_to_human(kills, :format => "%n%u", :units => { :thousand => "k", :million => "m" }, :precision => 3) : kills
+                                %td
+                                    = big_stat(entry.wins_solo) ? number_to_human(entry.wins_solo, :format => "%n%u", :units => { :thousand => "k", :million => "m" }, :precision => 3) : entry.wins_solo
+                                %td
+                                    = big_stat(entry.wins_teams) ? number_to_human(entry.wins_teams, :format => "%n%u", :units => { :thousand => "k", :million => "m" }, :precision => 3) : entry.wins_teams
+                                %td
+                                    - wins = entry.wins_solo + entry.wins_teams
+                                    = big_stat(wins) ? number_to_human(wins, :format => "%n%u", :units => { :thousand => "k", :million => "m" }, :precision => 3) : wins
+                                %td
+                                    = avatar_for(user, 16, glow: true)
+                                    = link_to_user(entry.user)
+            = paginate @entries
