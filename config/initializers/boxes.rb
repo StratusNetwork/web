@@ -5,10 +5,14 @@ case Rails.env
                 hostname Socket.gethostname
                 workers [RepoWorker,
                          CouchWorker,
-                         (ServerReportWorker if Dog.client), ModelSearchWorker,
-                         ChannelWorker, EngagementWorker,
+                         ModelSearchWorker,
+                         EngagementWorker,
+                         TaskWorker,
+                         MatchMaker,
+                         CalendarWorker,
                          #ChartWorker,
-                         TaskWorker, MatchMaker, CalendarWorker].compact
+                         #ChannelWorker,
+                         (ServerReportWorker if Dog.client)].compact
                 services [:octc]
             end
         end
