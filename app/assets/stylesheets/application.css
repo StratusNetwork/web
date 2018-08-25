@@ -121,6 +121,11 @@ hr {
     margin: 0;
 }
 
+.pager li > a,
+.pager li > span {
+  border-radius: 3px;
+}
+
 .well.post img {
     max-width: 660px;
 }
