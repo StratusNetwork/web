@@ -57,6 +57,7 @@ class UhcController < ApplicationController
         @sorts = {
             "wins_solo" => "wins during solo games",
             "wins_teams" => "wins during team games",
+            "wins_overall" => "overall wins",
             "gold" => "gold mined during all games",
             "kills" => "kills during all games"
         }

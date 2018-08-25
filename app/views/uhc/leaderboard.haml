@@ -35,6 +35,7 @@
                             %th{:width => "8%"} Kills
                             %th{:width => "12%"} Wins (Solo)
                             %th{:width => "12%"} Wins (Teams)
+                            %th{:width => "15%"} Wins (Overall)
                             %th Name
                     %tbody
                         - count = (@entries.current_page - 1) * @per_page
@@ -54,6 +55,9 @@
                                     = big_stat(entry.wins_solo) ? number_to_human(entry.wins_solo, :format => "%n%u", :units => { :thousand => "k", :million => "m" }, :precision => 3) : entry.wins_solo
                                 %td
                                     = big_stat(entry.wins_teams) ? number_to_human(entry.wins_teams, :format => "%n%u", :units => { :thousand => "k", :million => "m" }, :precision => 3) : entry.wins_teams
+                                %td
+                                    - wins = entry.wins_solo + entry.wins_teams
+                                    = big_stat(wins) ? number_to_human(wins, :format => "%n%u", :units => { :thousand => "k", :million => "m" }, :precision => 3) : wins
                                 %td
                                     = avatar_for(user, 16, glow: true)
                                     = link_to_user(entry.user)
