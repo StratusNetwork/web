@@ -11,6 +11,7 @@
 //= require application/stats
 //= require application/friendships
 //= require application/host
+//= require application/uhc
 //= require application/register
 //= require application/user
 //= require application/punishments
