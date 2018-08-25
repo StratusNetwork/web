@@ -15,6 +15,7 @@ class User
                             realm: realm,
                             text: "#{ChatColor[flair.color]}#{flair.symbol}",
                             priority: flair.priority || group.priority,
+                            visible_while_participating: flair.visible_while_participating
                         }
                     end
                 end
