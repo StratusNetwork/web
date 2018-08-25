@@ -57,7 +57,7 @@
                     %a{:href => main_app.forem_path}
                         %i.fa.fa-comments
                         Forum
-                %li.dropdown{:class => (current_page?(main_app.schedule_path) ? "active" : nil )}
+                %li.dropdown{:class => (controller_name == 'uhc' ? "active" : nil )}
                     %a.dropdown-toggle{:href => "#", :data => {:toggle => "dropdown"}, :style => (REDIS.get(CalendarWorker::ORIGIN_KEY) == 'uhc' ? "color:red" : nil)}
                         %i.fa.fa-heartbeat
                         UHC
@@ -67,6 +67,10 @@
                             %a{:href => main_app.schedule_path}
                                 %i.fa.fa-calendar-alt
                                 Schedule
+                        %li
+                            %a{:href => main_app.leaderboard_path}
+                                %i.fa.fa-chart-area
+                                Leaderboards
                 %li{:class => ('active' if 'shop' == controller_name)}
                     %a{:href => main_app.shop_path}
                         %i.fa.fa-shopping-cart
