@@ -67,23 +67,24 @@ class UhcController < ApplicationController
 
         case @sort.to_sym
         when :wins_solo
-            @entries = @entries.sort{|e| e.wins_solo}
+            @entries = @entries.sort_by{|e| e.wins_solo}
         when :wins_teams
-            @entries = @entries.sort{|e| e.wins_teams}
+            @entries = @entries.sort_by{|e| e.wins_teams}
         when :gold
-            @entries = @entries.sort{|e| e.gold_solo + e.gold_teams}
+            @entries = @entries.sort_by{|e| e.gold_solo + e.gold_teams}
         when :kills
-            @entries = @entries.sort{|e| e.kills_solo + e.kills_teams}
+            @entries = @entries.sort_by{|e| e.kills_solo + e.kills_teams}
         else
-            @entries = @entries.sort{|e| e.wins_solo + e.wins_teams}
+            @entries = @entries.sort_by{|e| e.wins_solo + e.wins_teams}
         end
+
+        @entries = @entries.reverse
 
         page = if @user = username_param and row = UhcLeaderboardEntry.find(user_id: @user.id)
             params.delete(:user)
             1 + (@entries.index(row) - 1) / @per_page
         end
 
-        @entries = Kaminari.paginate_array(@entries.reverse)
-        @entries = a_page_of(@entries, per_page: @per_page)
+        @entries = Kaminari.paginate_array(@entries).page(page ? page : params[:page]).per(PGM::Application.config.global_per_page)
     end
 end
