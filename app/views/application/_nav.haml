@@ -11,10 +11,20 @@
         .navbar-collapse.collapse#top-navbar-collapse
             -# Remove right margin to prevent wrapping when nav is full
             %ul.nav.navbar-nav{style: "margin-right: 0;"}
-                %li{:class => (current_page?(main_app.play_path) ? "active" : nil )}
-                    %a{:href => main_app.play_path}
+                %li.dropdown{:class => controller_name == 'play' || controller_name == 'uhc' ? 'active' : nil}
+                    %a.dropdown-toggle{:href => "#", :data => {:toggle => "dropdown"}}
                         %i.fa.fa-play
                         Play
+                        %b.caret
+                    %ul.dropdown-menu
+                        %li
+                            %a{:href => main_app.play_path}
+                                %i.fa.fa-play
+                                Play
+                        %li
+                            %a{:href => main_app.schedule_path}
+                                %i.fa.fa-calendar-alt
+                                UHC Schedule
                 %li{:class => (controller_name == 'maps' ? "active" : nil )}
                     %a{:href => main_app.maps_path}
                         %i.fa.fa-folder-open
@@ -29,6 +39,10 @@
                             %a{:href => main_app.url_for(controller: '/users', action: 'stats')}
                                 %i.fa.fa-chart-line
                                 Stats
+                        %li
+                            %a{:href => main_app.leaderboard_path}
+                                %i.fa.fa-heartbeat
+                                UHC Leaderboards
                         %li
                             %a{:href => main_app.staff_index_path}
                                 %i.fa.fa-user-md
@@ -57,20 +71,6 @@
                     %a{:href => main_app.forem_path}
                         %i.fa.fa-comments
                         Forum
-                %li.dropdown{:class => (controller_name == 'uhc' ? "active" : nil )}
-                    %a.dropdown-toggle{:href => "#", :data => {:toggle => "dropdown"}, :style => (REDIS.get(CalendarWorker::ORIGIN_KEY) == 'uhc' ? "color:red" : nil)}
-                        %i.fa.fa-heartbeat
-                        UHC
-                        %b.caret
-                    %ul.dropdown-menu
-                        %li
-                            %a{:href => main_app.schedule_path}
-                                %i.fa.fa-calendar-alt
-                                Schedule
-                        %li
-                            %a{:href => main_app.leaderboard_path}
-                                %i.fa.fa-chart-area
-                                Leaderboards
                 %li{:class => ('active' if 'shop' == controller_name)}
                     %a{:href => main_app.shop_path}
                         %i.fa.fa-shopping-cart
