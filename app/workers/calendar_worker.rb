@@ -44,7 +44,7 @@ class CalendarWorker
           # Announce events that are less than a week away
           if cal.announce &&
               (event.start.date != nil && Date.parse(event.start.date).mjd - Date.today.mjd <= cal.announce_range) ||
-              (event.start.date_time != nil && Date.parse(event.start.date_time).to_date.mjd - Date.today.mjd <= cal.announce_range)
+              (event.start.date_time != nil && event.start.date_time.to_date.mjd - Date.today.mjd <= cal.announce_range)
 
             to_announce << [cal.id, event]
           end
