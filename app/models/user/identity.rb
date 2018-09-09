@@ -305,7 +305,7 @@ class User
                     # before, and the profile data from the old account does not
                     # indicate that it is deleted in any way.
                     Logging.logger.info "Fetching username for #{uuid}"
-                    name = Mojang::Profile.from_uuid(uuid).name
+                    name = Mojang.uuid_to_username(uuid)
                     name_uuid = User.normalize_uuid(Mojang.username_to_uuid(name))
                     if uuid == name_uuid
                         claim_username!(name, visited: visited)
