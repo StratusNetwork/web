@@ -34,6 +34,12 @@ module Mojang
             end
         end
 
+        def uuid_to_username(uuid)
+            api_get(username_url(User.normalize_uuid(uuid))) do |io|
+                JSON.parse(io.read)['username']
+            end
+        end
+
         def username_taken?(name)
             code = begin
                 open(username_url(name)).status[0].to_i
