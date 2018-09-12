@@ -5,6 +5,9 @@ class CouchWorker
     include Worker
 
     startup do
+        # Sync all maps
+        Map.sync_ratings
+
         # Get current sequence number
         begin
             @last_seq = Couch::MapRating.score_by_map.get_changes(since: 'now')['last_seq'].to_i
@@ -12,9 +15,6 @@ class CouchWorker
             # No way to configure the timeout in CouchRest, so we have to do this
             retry
         end
-
-        # Sync all maps
-        Map.all.sync_ratings
 
         logger.info "Listening for map rating changes from seq #{@last_seq}"
 
