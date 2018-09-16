@@ -11,14 +11,26 @@
         .navbar-collapse.collapse#top-navbar-collapse
             -# Remove right margin to prevent wrapping when nav is full
             %ul.nav.navbar-nav{style: "margin-right: 0;"}
-                %li{:class => (current_page?(main_app.play_path) ? "active" : nil )}
-                    %a{:href => main_app.play_path}
+                %li.dropdown{:class => controller_name == 'maps' || current_page?(main_app.play_path) ? 'active' : nil}
+                    %a.dropdown-toggle{:href => "#", :data => {:toggle => "dropdown"}}
                         %i.fa.fa-play
                         Play
-                %li{:class => (controller_name == 'maps' ? "active" : nil )}
-                    %a{:href => main_app.maps_path}
-                        %i.fa.fa-folder-open
-                        Maps
+                        %b.caret
+                    %ul.dropdown-menu
+                        %li.dropdown-header.ip-nav.center{onClick: 'event.stopPropagation();'}
+                            .row
+                                Connect using
+                                %label.label-primary
+                                    %input.input{type: "text", value: "play.stratus.network", onClick: "this.select();", readonly: true}
+                        %li.divider{:role => "separator", style: 'margin: 0;'}
+                        %li
+                            %a{:href => main_app.play_path}
+                                %i.fa.fa-server
+                                Online Servers
+                        %li
+                            %a{:href => main_app.maps_path}
+                                %i.fa.fa-folder-open
+                                Maps
                 %li.dropdown{:class => controller_name == 'users' || controller_name == 'channels' ? 'active' : nil}
                     %a.dropdown-toggle{:href => "#", :data => {:toggle => "dropdown"}}
                         %i.fa.fa-user

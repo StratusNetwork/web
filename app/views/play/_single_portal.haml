@@ -1,0 +1,38 @@
+- players = @portal_infos[0][:players]
+- servers = @portal_infos[0][:servers]
+
+%h2.center
+    Connect using
+    %a.btn.btn-primary.btn-md.ip-small
+        %input.input{type: "text", value: "play.stratus.network", onClick: "this.select();", readonly: true}
+    %br
+    %small
+        Join
+        %strong= players
+        = 'player'.pluralize(players)
+        online
+        across
+        %strong= servers
+        = 'server'.pluralize(servers)
+%hr
+.sidebar>
+    - unless @friends.empty?
+        .well.seen
+            %table.table
+                %thead
+                    %tr
+                        %th{colspan: 2} Online Friends
+                %tbody
+                    = render partial: 'players_by_server', locals: {servers: @friends, global: false}
+    - unless @staff.empty?
+        .well.seen
+            %table.table
+                %thead
+                    %tr
+                        %th{colspan: 2} Online Staff
+                %tbody
+                    = render partial: 'players_by_server', locals: {servers: @staff, global: false}
+
+- @servers.each do |server|
+    .server-container>
+        = render partial: 'server', locals: {server: server, global: false}

@@ -22,13 +22,14 @@ class PlayController < ApplicationController
         realms = @servers.flat_map(&:realms).uniq
         @staff = @sessions.select{|s| s.player.is_mc_staff?(realms) }.group_by(&:server)
 
-        @portal_infos = portals.map do |portal|
+        @portal_infos = []
+        portals.each do |portal|
             servers = @servers.select{|s| s.portal == portal }
-            {
+            @portal_infos << {
                 portal: portal,
                 servers: servers.size,
                 players: Server.bungees.online.portal(portal).sum(&:num_online)
-            }
+            } unless servers.empty?
         end
     end
 
