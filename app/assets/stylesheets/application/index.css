@@ -21,3 +21,24 @@
     font-weight: bold !important;
     font-size: 14px !important;
 }
+
+.ip-nav {
+  font-size: 16px;
+}
+
+.ip-nav input {
+    font-weight: bold;
+    text-align: center;
+    border: 0;
+    font-size: 12px;
+    width: 140px;
+    box-shadow: none;
+    color: #ffffff;
+    background-color: transparent;
+    margin: 0;
+}
+
+.ip-nav input:hover {
+    cursor: pointer;
+    background-color: transparent;
+}

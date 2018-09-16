@@ -1,7 +1,28 @@
+.ip-small {
+  width: 250px;
+}
+
+.ip-small input {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: none;
+    color: #ffffff;
+    background-color: transparent;
+    margin: 0;
+}
+
+.ip-small input:hover {
+    cursor: pointer;
+}
+
 @media (min-width: 768px) {
     .play .sidebar {
         /* Contains all of the special wells on the left */
-        width: 340px;
+        width: 440px;
         float: left;
         margin-right: 20px;
     }
@@ -65,18 +86,27 @@
 
 .play .connect td {
     padding: 10px 0;
+    border: 0;
+}
+
+.play .connect .seperator {
+  padding-bottom: 0px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #d0d0d0;
 }
 
 .play .connect .details {
     font-size: 16px;
     padding-top: 5px;
-    padding-bottom: 10px;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: #d0d0d0;
 }
 
-.play .connect .details .location {
+.play .connect .header {
+    text-align: center;
+    padding-bottom: 1px;
+}
+
+.play .connect .header .location {
     font-size: 16px;
     font-weight: bold;
 }
