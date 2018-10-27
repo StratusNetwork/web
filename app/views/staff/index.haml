@@ -14,7 +14,7 @@
                     %small= group.members.count
                 %p.small= group.description
                 %hr
-        - group.members.shuffle(random: Random.new(DateTime.now.beginning_of_hour.to_i)).in_groups_of(4, false).each do |row|
+        - group.members_by_seniority.in_groups_of(4, false).each do |row|
             .row
                 - row.each do |member|
                     .col-md-3.col-sm-6
