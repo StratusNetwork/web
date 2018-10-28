@@ -29,6 +29,8 @@ PGM::Application.routes.draw do
     get '/mapmaking' => redirect('https://stratus.network/forums/58e16d72f6e8a83410000047')
     get '/conduct' => redirect('https://stratus.network/forums/topics/59b70619a2e3a9000100010f')
     get '/halloween' => redirect('https://stratus.network/forums/topics/5bb0c0e15478350001001749')
+    get '/apply' => redirect("https://stratus.network/forums/59ac44fba2e3a9000100004c")
+    get '/discord' => redirect("https://discord.gg/Vxmq7Xp")
 
     resources :revisions
     resources :rules
