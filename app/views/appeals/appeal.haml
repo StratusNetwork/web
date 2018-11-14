@@ -1,32 +1,32 @@
-- content_for :title do "Appeal Punishments" end
+- content_for :title do "Appeal An Infraction" end
 
 %section
     .page-header
         %h2
-            Appeal Punishments
+            Appeal an infraction
             %a.btn.btn-primary.pull-right{:href => appeals_path}
                 %i.fa.fa-tasks
                 All Appeals
     .row
         .col-md-4
             %h4.strong What can be appealed?
-            %p If you have been caught cheating, your appeal will be denied.
-            %p Appeals exist in order to catch mistakes, not to argue about the rules, or your personal virtues.
+            %p Any infraction which you believe was issued incorrectly or which is too severe can be contested.
+            %p Appeals exist in order to catch mistakes, not to argue about the rules.
         .col-md-4
             %h4.strong How are appeals resolved?
-            %p The moderator who punished you will review the evidence, and remove the punishment if they find it was in error.
-            %p You can escalate an appeal to have it reviewed by a senior staff member, but this will delay the resolution.
+            %p The moderator who punished you will review the incident, and appeal the infraction if they find it was in error or reduce it in severity if they feel it was too harsh.
+            %p If you disagree with the moderator’s decision, you can escalate an appeal to have it reviewed by a senior staff member, but this will delay the response time.
         .col-md-4
-            %h4.strong Privilege, not a right
-            %p Playing on our servers is a privilege.
-            %p If you abused or have shown promise to abuse the network, your appeal will be denied.
+            %h4.strong Conduct in appeals
+            %p If your infraction was issued incorrectly, you should appeal it in a timely manner. Moderators are only required to obtain evidence for cheating bans, and this must only be retained for 28 days.
+            %p If you lie in your appeal or are abusive towards our staff, your appeal will be denied and you may receive further punishment.
     %br
     .row
         .col-md-6.col-md-offset-3.col-xs-8.col-xs-offset-2.text-center
             - if user_signed_in?
                 - if !@can_appeal
                     %br
-                    .alert.alert-info.strong You don't have punishments to appeal or appeals to view
+                    .alert.alert-info.strong You don't have infractions to appeal or appeals to view
                 %a.btn.btn-lg.btn-primary.strong{:href => (!@can_appeal ? "#" : new_appeal_path), :class => (@punishments == 0 ? "disabled" : "")} Ok, let's go &raquo;
             - else
                 %br

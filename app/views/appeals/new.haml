@@ -51,7 +51,7 @@
                                             = safe_formatted_html(p.evidence)
             - else
                 %center
-                    %p No punishments to display.
+                    %p No infractions to display.
     .modal.fade#action
         .modal-dialog
             .modal-content
@@ -63,7 +63,7 @@
                     .modal-body
                         .form-group
                             %label.control-label Explanation
-                            %textarea.form-control{:name => "explanation", :rows => 3, :placeholder => "Explain why you are appealing this punishment", :required => true}
+                            %textarea.form-control{:name => "explanation", :rows => 3, :placeholder => "Explain why you are appealing this infraction", :required => true}
 
                         %input#action-id{:type => "hidden", :name => "punishment", :value => ""}
                     .modal-footer
