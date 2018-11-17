@@ -14,9 +14,7 @@ class User
             def death_screens
             {
                 'default' => 'You died!',
-                'headshot' => 'Headshot!',
                 'zoinks' => 'Zoinks!',
-                'jinkies' => 'Jinkies!',
                 'jeepers' => 'Jeepers!',
                 'skadoosh' => 'Skadoosh.',
                 'kachow' => 'Ka-Chow!',
@@ -36,13 +34,21 @@ class User
                 'gladiator' => 'Are you not entertained?',
                 'rip' => 'R.I.P.',
                 'triple' => 'Oh baby a triple!',
-                'next' => 'Next time!',
-                'luigi' => 'Itza Me!',
-                'crazy' => 'That\'s Crazy_',
                 'hec' => 'What the hec!',
                 'piston' => 'You\'re piston me off!',
                 'mamamia' => 'Mama Mia!',
-                'everyone' => '@everyone'
+                'everyone' => '@everyone',
+                'epic' => 'Ok, that was epic.',
+                'oof' => 'oof',
+                'highground' => 'You didn\'t have the highground.',
+                'stark' => 'I don\'t wanna go Mr. Stark.'
+                'respects' => 'Press F to pay respects.',
+                'head' => 'You should have gone for the head!',
+                'legends' => 'Legends never die!',
+                'goodbye' => 'Goodbye cruel world!',
+                'flipside' => 'Catch ya\' on the flip side!'
+                'yeet' => 'Yeet!',
+                'easymode' => 'Is this easy mode?'
             }
             end
 
