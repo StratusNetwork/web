@@ -25,7 +25,6 @@ class User
                 'bazinga' => 'Bazinga!',
                 'looksee' => 'Did you see that?',
                 'cheer' => '*crowd cheering*',
-                'modpoints' => '-1 mod point',
                 'run' => 'Gotta run!',
                 'dejavu' => 'Deja vu',
                 'kenobi' => 'Hello there!',
