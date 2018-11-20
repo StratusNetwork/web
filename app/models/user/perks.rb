@@ -35,7 +35,7 @@ class User
                 'triple' => 'Oh baby a triple!',
                 'hec' => 'What the hec!',
                 'piston' => 'You\'re piston me off!',
-                'mamamia' => 'Mama Mia!',
+                'mammamia' => 'Mamma Mia!',
                 'everyone' => '@everyone',
                 'epic' => 'Ok, that was epic.',
                 'oof' => 'oof',
