@@ -40,12 +40,12 @@ class User
                 'epic' => 'Ok, that was epic.',
                 'oof' => 'oof',
                 'highground' => 'You didn\'t have the highground.',
-                'stark' => 'I don\'t wanna go Mr. Stark.'
+                'stark' => 'I don\'t wanna go Mr. Stark.',
                 'respects' => 'Press F to pay respects.',
                 'head' => 'You should have gone for the head!',
                 'legends' => 'Legends never die!',
                 'goodbye' => 'Goodbye cruel world!',
-                'flipside' => 'Catch ya\' on the flip side!'
+                'flipside' => 'Catch ya\' on the flip side!',
                 'yeet' => 'Yeet!',
                 'easymode' => 'Is this easy mode?'
             }
