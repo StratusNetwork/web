@@ -39,15 +39,14 @@ class User
                 'everyone' => '@everyone',
                 'epic' => 'Ok, that was epic.',
                 'oof' => 'oof',
-                'highground' => 'You didn\'t have the highground.',
+                'highground' => 'I had the high ground.',
                 'stark' => 'I don\'t wanna go Mr. Stark.',
                 'respects' => 'Press F to pay respects.',
-                'head' => 'You should have gone for the head!',
                 'legends' => 'Legends never die!',
                 'goodbye' => 'Goodbye cruel world!',
                 'flipside' => 'Catch ya\' on the flip side!',
                 'yeet' => 'Yeet!',
-                'easymode' => 'Is this easy mode?'
+                'user' => 'User has left your channel.'
             }
             end
 
