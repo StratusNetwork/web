@@ -23,3 +23,10 @@
             Check out
             %a{:href => main_app.santa_path} secret santa
             and give to others. Everything is 20% off!
+    .alert.alert-success#promo-alert{:summary => "This alert will be gone in a day or two, don't fret."}
+        %i.far.fa-calendar-check
+        %strong Black Friday Sale!
+        Check out
+        %a{:href => main_app.shop_path} the shop
+        for some special Black Friday deals! Hurry, the sale ends in
+        %strong= time_ago_in_words(DateTime.parse("18/11/27 5:00")) + "!"
