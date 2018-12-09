@@ -19,7 +19,13 @@ class CalendarWorker
         to_announce = []
 
         # Ensure token never expires
-        GOOGLE::CALENDAR.authorization.fetch_access_token!
+        # Sometimes this method fails due to networking issues, so we check here and abort if it does
+        begin
+          GOOGLE::CALENDAR.authorization.fetch_access_token!
+        rescue
+          logger.error "Failed to get google key! Aborting"
+          next # return
+        end
 
         Calendar.all.each do |cal|
           logger.info "Getting events for " + cal.id
