@@ -7,7 +7,7 @@
             %small
                 - unless @events.empty?
                     - event = @events.values.first
-                    = "Next event is in " + time_ago_in_words(event.event_start_date).to_s
+                    = "Next event is in " + time_ago_in_words(event.event_start_time).to_s
                     = "and it lasts all day!" if event.all_day
 
 
