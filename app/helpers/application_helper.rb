@@ -141,4 +141,22 @@ module ApplicationHelper
     def join_safe(things)
         things.to_a.join.html_safe
     end
+
+    Event = Struct.new(:summary, :event_start_time)
+
+    def describe_next_uhc
+        raw = REDIS.get("calendars:uhc:upcoming")
+        raw ||= '{}'
+        event = JSON.parse(raw).values[0]
+
+        return if event.nil?
+        summary = event["summary"]
+        all_day = event["start_date"].present? && event["start_time"].nil?
+        event_start_time = all_day ? DateTime.parse(event["start_date"]) : DateTime.parse(event["start_time"])
+
+        event = Event.new(
+            summary,            # Title of the event
+            event_start_time,   # TIME when the event starts
+        )
+    end
 end

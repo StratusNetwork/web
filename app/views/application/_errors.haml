@@ -23,3 +23,13 @@
             Check out
             %a{:href => main_app.santa_path} secret santa
             and give to others. Everything is 20% off!
+    - uhc = describe_next_uhc
+    - if !uhc.nil? && (uhc.event_start_time.to_time - Time.now).to_i < 4.hours && !current_page?(main_app.schedule_path)
+        .alert.alert-success#uhc-alert
+            %strong
+                %i.fa.fa-heartbeat
+                Upcoming UHC
+            = "A " + uhc.summary[0, 1].downcase + uhc.summary[1..-1] + " is starting in " + time_ago_in_words(uhc.event_start_time) + "!"
+            Click
+            %a{href: main_app.schedule_path} here
+            for more info.
