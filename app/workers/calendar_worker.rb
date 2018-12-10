@@ -44,8 +44,12 @@ class CalendarWorker
 
           # Save closest event
           event = items.first
-          REDIS.set("calendars:#{cal.id}:next", hashify(cal.id, event).to_json)
-          REDIS.expire("calendars:#{cal.id}:next", 15.minutes)
+          if event.start.date_time.future?
+            REDIS.set("calendars:#{cal.id}:next", hashify(cal.id, event).to_json)
+            REDIS.expire("calendars:#{cal.id}:next", 15.minutes)
+          else
+            REDIS.del("calendars:#{cal.id}:next")
+          end
 
           # Announce events that are less than a week away
           if cal.announce &&
