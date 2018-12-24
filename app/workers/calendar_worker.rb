@@ -11,7 +11,7 @@ class CalendarWorker
         if Rails.env.production?
             1.minute
         else
-            5.minutes
+            6.minutes
         end
     end
 
@@ -30,33 +30,46 @@ class CalendarWorker
         Calendar.all.each do |cal|
           logger.info "Getting events for " + cal.id
 
-          # Save ALL upcoming events
+          # Save ALL of today's events
           items = GOOGLE::CALENDAR.list_events(cal.source, time_min: DateTime.now.beginning_of_day.rfc3339).items
           next if items.empty? # Calendar is empty
 
+          # Save all of today's events for event lists
           full = {}
           items.each do |event|
             full[event.id.to_sym] = hashify(cal.id, event)
           end
 
-          REDIS.set("calendars:#{cal.id}:upcoming", full.to_json)
-          REDIS.expire("calendars:#{cal.id}:upcoming", 15.minutes)
+          REDIS.set("calendars:#{cal.id}:events", full.to_json)
+          REDIS.expire("calendars:#{cal.id}:events", 6.minutes)
+
+          # Save only upcomming events for alerts
+          upcoming = {}
+          items.each do |event|
+            upcoming[event.id.to_sym] = hashify(cal.id, event) if event.start.date_time.future?
+          end
+
+          REDIS.set("calendars:#{cal.id}:upcoming", upcoming.to_json)
+          REDIS.expire("calendars:#{cal.id}:upcoming", 6.minutes)
+
+          # Remove items that have happened so they don't get announced again
+          items.delete_if{|e| e.start.date_time.past?}
+          next if items.empty?
 
           # Save closest event
           event = items.first
           if event.start.date_time.future?
             REDIS.set("calendars:#{cal.id}:next", hashify(cal.id, event).to_json)
-            REDIS.expire("calendars:#{cal.id}:next", 15.minutes)
+            REDIS.expire("calendars:#{cal.id}:next", 6.minutes)
+
+            if cal.announce &&
+                (event.start.date != nil && Date.parse(event.start.date).mjd - Date.today.mjd <= cal.announce_range) ||
+                (event.start.date_time != nil && event.start.date_time.to_date.mjd - Date.today.mjd <= cal.announce_range)
+
+              to_announce << [cal.id, event]
+            end
           else
             REDIS.del("calendars:#{cal.id}:next")
-          end
-
-          # Announce events that are less than a week away
-          if cal.announce &&
-              (event.start.date != nil && Date.parse(event.start.date).mjd - Date.today.mjd <= cal.announce_range) ||
-              (event.start.date_time != nil && event.start.date_time.to_date.mjd - Date.today.mjd <= cal.announce_range)
-
-            to_announce << [cal.id, event]
           end
         end
 
@@ -72,9 +85,9 @@ class CalendarWorker
 
         event = to_announce.first
         REDIS.set(ANNOUNCE_KEY, hashify(event[0], event[1]).to_json)
-        REDIS.expire(ANNOUNCE_KEY, 10.minutes)
+        REDIS.expire(ANNOUNCE_KEY, 6.minutes)
         REDIS.set(ORIGIN_KEY, event[0])
-        REDIS.expire(ORIGIN_KEY, 10.minutes)
+        REDIS.expire(ORIGIN_KEY, 6.minutes)
     end
 
     def hashify(cal, event)

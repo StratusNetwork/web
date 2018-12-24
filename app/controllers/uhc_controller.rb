@@ -4,7 +4,7 @@ class UhcController < ApplicationController
     Event = Struct.new(:summary, :description, :all_day, :event_start_date, :event_end_date, :event_start_time, :event_end_time, :same_day, :add_link, :tweet_link)
 
     def schedule
-        raw = REDIS.get("calendars:uhc:upcoming")
+        raw = REDIS.get("calendars:uhc:events")
         raw ||= '{}'
         events_raw = JSON.parse(raw)
         events_raw = Hash[events_raw.first(15)] # Only show max of 15 events
