@@ -7,9 +7,11 @@
             %small
                 - unless @events.empty?
                     - event = @events.values.first
-                    = "Next event is in " + time_ago_in_words(event.event_start_time).to_s
-                    = "and it lasts all day!" if event.all_day
-
+                    - if event.event_start_time.future?
+                        = "Next event is in " + time_ago_in_words(event.event_start_time).to_s
+                        = "and it lasts all day!" if event.all_day
+                    - elsif event.event_start_time.past? && event.event_end_time.future?
+                        = "An event is happening now and will end in " + time_ago_in_words(event.event_end_time).to_s
 
     - if @events.empty?
         .row
