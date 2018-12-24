@@ -145,7 +145,7 @@ module ApplicationHelper
     Event = Struct.new(:summary, :event_start_time)
 
     def describe_next_uhc
-        raw = REDIS.get("calendars:uhc:upcoming")
+        raw = REDIS.get("calendars:uhc:next")
         raw ||= '{}'
         event = JSON.parse(raw).values[0]
 
