@@ -147,9 +147,10 @@ module ApplicationHelper
     def describe_next_uhc
         raw = REDIS.get("calendars:uhc:next")
         raw ||= '{}'
-        event = JSON.parse(raw).values[0]
+        event = JSON.parse(raw)
 
-        return if event.nil?
+        return if event.empty?
+
         summary = event["summary"]
         all_day = event["start_date"].present? && event["start_time"].nil?
         event_start_time = all_day ? DateTime.parse(event["start_date"]) : DateTime.parse(event["start_time"])
