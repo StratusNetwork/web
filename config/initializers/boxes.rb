@@ -10,6 +10,7 @@ case Rails.env
                          TaskWorker,
                          MatchMaker,
                          CalendarWorker,
+                         PrivateServerManager,
                          #ChartWorker,
                          #ChannelWorker,
                          (ServerReportWorker if Dog.client)].compact
