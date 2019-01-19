@@ -8,12 +8,12 @@ class Server
             field :ownable, default: false
             attr_accessible :ownable
             api_property :ownable
-            
+
             # User who owns this server
             belongs_to :user
             field_scope :user
             api_property :user_id
-            attr_cloneable :user
+            attr_accessible :user
         end # included do
 
         module ClassMethods

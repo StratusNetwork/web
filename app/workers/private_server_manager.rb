@@ -21,7 +21,7 @@ class PrivateServerManager
       next if s.num_online > 0
 
       # Kill empty servers
-      server.queue_restart(reason: "Automated server reset", priority: Priority::HIGH) if server.online?
+      s.queue_restart(reason: "Automated server reset", priority: Server::Restart::Priority::HIGH) if s.online?
     end
 
     # Keep 1 avaliable server ready at all times
@@ -33,19 +33,19 @@ class PrivateServerManager
   handle UseServerRequest do |request|
     ApiSyncable.syncing do
       user = request.user
-      server = Server.find_by_user(user)
+      server = Server.find_by(user: user)
       if server.nil?
         server = Server.free_for_requests.first
         if server.nil?
           server = create_server
         end
-        claim_server(server)
+        claim_server(server, user)
       end
-      UseServerResponse.new(
-        server_name: server.bungee_name,
-        now: server.online?
-      )
       create_pod(server) unless server_online?(server)
+      res = UseServerResponse.new(request: request)
+      res.server_name = server.bungee_name
+      res.now = server.online?
+      res
     end
   end
 
@@ -85,7 +85,7 @@ class PrivateServerManager
     )
   end
 
-  def claim_server(server)
+  def claim_server(server, user)
     name = user.username
     bungee_name = name.downcase
     ip = bungee_name
@@ -98,7 +98,7 @@ class PrivateServerManager
   end
 
   def create_pod(server)
-    log "Creating service for " + server.name
+    logger.info "Creating service for " + server.name
     service = Kubeclient::Resource.new
     service.metadata = {
       name: server.bungee_name,
@@ -121,8 +121,8 @@ class PrivateServerManager
         user: server.bungee_name
       }
     }
-    cluster.create_service(pod)
-    log "Creating pod for " + server.name
+    cluster.create_service(service)
+    logger.info "Creating pod for " + server.name
     pod = Kubeclient::Resource.new
     pod.metadata = {
       name: server.bungee_name,
