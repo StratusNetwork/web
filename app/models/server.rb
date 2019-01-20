@@ -43,4 +43,5 @@ class Server
     include Virtualization
     include Whitelist
     include Mutation
+    include Ownable
 end

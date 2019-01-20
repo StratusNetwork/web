@@ -69,7 +69,7 @@ class MatchMaker
     handle ModelUpdate do |msg|
         if msg.model <= Server
             server = msg.document
-            server.arena.process_queue! if server.game?
+            server.arena.process_queue! if !server.nil? && server.game?
         end
     end
 end

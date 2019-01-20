@@ -59,6 +59,10 @@ gem 'lockup'                            # Password protect development/staging w
 gem 'net-http-pipeline'
 gem 'crowdin-api', github: 'OvercastNetwork/crowdin-api', branch: 'master'
 
+gem 'kubeclient'
+gem 'celluloid'
+gem 'celluloid-io'
+
 # CouchDB ORM - forked to fix date serialization format
 gem 'couch_potato', :github => 'OvercastNetwork/couch_potato', :branch => 'master', :ref => '7c55e77cf25f30a0878b7d0425fc3b87e83e33b2'
 
