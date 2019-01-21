@@ -11,6 +11,7 @@ class PrivateServerManager
   consumer exclusive: true, manual_ack: false
 
   topic_binding UseServerRequest
+  topic_binding ModelUpdate
 
   around_event :dequeue do |_, yielder|
     ApiSyncable.syncing(&yielder)
@@ -26,7 +27,6 @@ class PrivateServerManager
         if Time.now - empty_times[s.bungee_name] > 10.minutes
           # Kill empty servers
           s.queue_restart(reason: "Automated server reset", priority: Server::Restart::Priority::HIGH)
-          cluster.delete_service s.bungee_name, 'default'
           empty_times.delete s.bungee_name
         end
       else
@@ -38,6 +38,25 @@ class PrivateServerManager
     if Server.free_for_requests.empty?
       create_server
     end
+  end
+
+  handle ModelUpdate do |msg|
+      if msg.model <= Server
+          server = msg.document
+          if !server.nil? && server.user.present? && !server.online?
+            begin
+              cluster.delete_pod server.bungee_name, 'default'
+            rescue
+              # Pod already gone
+            end
+
+            begin
+              cluster.delete_service server.bungee_name, 'default'
+            rescue
+              # Service already gone
+            end
+          end
+      end
   end
 
   handle UseServerRequest do |request|
