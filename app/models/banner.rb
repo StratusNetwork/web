@@ -30,7 +30,7 @@ class Banner
     attr_accessible :text, :active, :weight, :expires_at, :type
 
     before_save do
-        render('US') if type == Type::MOTD # Ensure this works before saving
+        render('US') # Ensure this works before saving
     end
 
     after_save do
