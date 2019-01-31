@@ -13,6 +13,7 @@
                     %tr
                         %th{width: "55%"} Message
                         %th{width: "10%"} Weight
+                        %th{width: '5%'} Type
                         %th{width: "20%"} Expiration
                         %th{width: "2%"}
                         %th{width: "2%"}
@@ -21,6 +22,7 @@
                         %tr{class: ("success" if banner.active_at)}
                             %td= banner.text
                             %td= banner.weight
+                            %td= banner.type.to_s.downcase.capitalize
                             - if banner.expires?
                                 %td= format_relative_time(banner.expires_at)
                             - else

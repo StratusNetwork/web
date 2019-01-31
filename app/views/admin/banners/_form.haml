@@ -1,6 +1,27 @@
 = simple_form_for [:admin, @banner] do |b|
-    %label Message
-    = b.input :text, as: :string, label: false
+    .form_group
+        = b.label "Type"
+        = b.select :type, ["web", "motd"], class: 'form-controll'
+    .form_group
+        %label Message
+        = b.input :text, as: :string, label: false
+        %p
+            .label.label-default Tip
+            Web banners follow the
+            %code level:icon:bold:text
+            format, where:
+            %br
+            %code level
+            is a bootstrap alert type
+            %br
+            %code icon
+            is a font-awesome icon (without the initial 'fa')
+            %br
+            %code bold
+            is the text in bold at the beginning of the message
+            %br
+            %code message
+            is the markdown-formatted alert text
     %label Weight
     = b.input :weight, as: :float, label: false
     %label Expiration

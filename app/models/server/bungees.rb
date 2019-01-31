@@ -4,11 +4,11 @@ class Server
     # from the Server document, so they should probably be moved somewhere else.
     module Bungees
         extend ActiveSupport::Concern
-        
+
         included do
             api_synthetic :banners do
                 if bungee?
-                    Banner.active.map do |banner|
+                    Banner.active(Banner::Type::MOTD).map do |banner|
                         { weight: banner.weight,
                           rendered: banner.render(datacenter) }
                     end

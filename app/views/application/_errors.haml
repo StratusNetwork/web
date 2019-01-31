@@ -23,6 +23,8 @@
             Check out
             %a{:href => main_app.santa_path} secret santa
             and give to others. Everything is 20% off!
+    - Banner.active(Banner::Type::WEB).each do |b|
+        = raw b.render
     - uhc = describe_next_uhc
     - if !uhc.nil? && (uhc.event_start_time.to_time - Time.now).to_i < 4.hours && !current_page?(main_app.schedule_path)
         .alert.alert-success#uhc-alert
