@@ -30,6 +30,7 @@ PGM::Application.routes.draw do
     get '/conduct' => redirect('https://stratus.network/forums/topics/59b70619a2e3a9000100010f')
     get '/apply' => redirect("https://stratus.network/forums/59ac44fba2e3a9000100004c")
     get '/discord' => redirect("https://discord.gg/Vxmq7Xp")
+    get '/uhcrules' => redirect("https://stratus.network/forums/topics/5c01684c4eb4e8000100081f")
 
     resources :revisions
     resources :rules
