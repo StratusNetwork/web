@@ -152,7 +152,11 @@ class PrivateServerManager
         user: server.bungee_name
       }
     }
-    cluster.create_service(service)
+    begin
+      cluster.create_service(service)
+    rescue
+      logger.info "Failed to create sevice for " + server.name + " (likely already exists)"
+    end
     logger.info "Creating pod for " + server.name
     pod = Kubeclient::Resource.new
     pod.metadata = {
