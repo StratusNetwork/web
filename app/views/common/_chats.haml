@@ -19,7 +19,7 @@
                     %td= c.type.to_s.titleize
                     %td= c.match ? content_tag(:a, c.match.map.name, :href => "/matches/#{c.match.id}") : ""
                     - if server
-                        %td= content_tag(:a, c.server.display_name, :href => main_app.play_path)
+                        %td= c.server ? content_tag(:a, c.server.display_name, :href => main_app.play_path) : "Unknown Server"
                     %td{:rel => "tooltip", :title => format_time(c.sent_at), :data => {:placement => "top", :container => "body"}}
                         %a
                             = time_ago_in_words(c.sent_at, false, :vague => true)
