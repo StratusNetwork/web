@@ -45,7 +45,7 @@ class PrivateServerManager
           server = msg.document
           if !server.nil? && server.user.present? && !server.online?
             begin
-              cluster.delete_pod server.bungee_name, 'default'
+              cluster.delete_pod safe_name(server.bungee_name), 'default'
             rescue
               # Pod already gone
             end
@@ -119,7 +119,7 @@ class PrivateServerManager
   def claim_server(server, user)
     name = user.username
     bungee_name = name.downcase
-    ip = bungee_name
+    ip = safe_name(bungee_name)
     server.update(name: name,
       bungee_name: bungee_name,
       ip: ip,
@@ -128,11 +128,16 @@ class PrivateServerManager
     )
   end
 
+  def safe_name(name)
+    name.gsub("_", "-")
+  end
+
   def create_pod(server)
     logger.info "Creating service for " + server.name
+    name_safe = safe_name(server.bungee_name)
     service = Kubeclient::Resource.new
     service.metadata = {
-      name: server.bungee_name,
+      name: name_safe,
       labels: {
         role: 'private',
         type: 'minecraft',
@@ -160,7 +165,7 @@ class PrivateServerManager
     logger.info "Creating pod for " + server.name
     pod = Kubeclient::Resource.new
     pod.metadata = {
-      name: server.bungee_name,
+      name: name_safe,
       labels: {
         role: 'private',
         type: 'minecraft',
