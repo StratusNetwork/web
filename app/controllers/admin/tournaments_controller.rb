@@ -27,6 +27,13 @@ module Admin
         end
 
         def edit
+            str = ""
+            @tournament.map_classifications.each do |classifier, maps|
+                str += classifier + ":"
+                str += maps.join(",")
+                str += "\n"
+            end
+            @classifications_string = str[0...-1]
         end
 
         def update
@@ -56,6 +63,20 @@ module Admin
                 else
                     form[field] = Chronic.parse(form[field])
                 end
+            end
+            if form[:map_classifications].blank?
+                form[:map_classifications] = nil
+            else
+                classifications = form[:map_classifications]
+                hash = {}
+                classifications.gsub("\r", "").split("\n").each do |c|
+                    classifier = c.split(":")[0]
+                    go_back alert: "classifier cannot be empty" if classifier.blank?
+                    maps = c.split(":")[1]
+                    go_back alert: "classifier must include at least one map" if maps.blank?
+                    hash[classifier] = maps.split(',')
+                end
+                form[:map_classifications] = hash
             end
         end
 

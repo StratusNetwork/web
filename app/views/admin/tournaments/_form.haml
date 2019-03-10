@@ -17,4 +17,19 @@
     = f.input :max_players_per_team, as: :integer
     = f.input :min_players_per_match, as: :integer
     = f.input :max_players_per_match, as: :integer
+    .form-group
+        %label Map Classifications
+        = f.input :map_classifications, as: :text, input_html: { style: "width: 100%; height: 200px;", value: @classifications_string}, label: false
+        %p
+            .label.label-default Tip
+            Map classifications follow the format of
+            = succeed ', where' do
+                %code classifier:map names
+            %code classifier
+            is any identifier you with to assign to the set of maps, and
+            %code map names
+            is a comma separated list of map names/slugs.
+            Each new classifier should be put on a
+            = succeed '.' do
+                %strong new line
     = f.submit :class => "btn btn-primary"
