@@ -68,7 +68,7 @@ class PrivateServerManager
         if server.nil?
           server = create_server
         end
-        claim_server(server, user)
+        claim_server(server, user, request.name)
       end
       create_pod(server) unless server_online?(server)
       res = UseServerResponse.new(request: request)
@@ -116,9 +116,9 @@ class PrivateServerManager
     )
   end
 
-  def claim_server(server, user)
-    name = user.username
-    bungee_name = name.downcase
+  def claim_server(server, user, server_name)
+    name = server_name
+    bungee_name = server_name.downcase
     ip = safe_name(bungee_name)
     server.update(name: name,
       bungee_name: bungee_name,
