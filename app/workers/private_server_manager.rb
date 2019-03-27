@@ -62,10 +62,7 @@ class PrivateServerManager
   handle UseServerRequest do |request|
     ApiSyncable.syncing do
       user = request.user
-      server = Server.find_by(user: user)
-      if request.name != request.user.username
-        server = nil
-      end
+      server = Server.find_by(name: request.name)
       if server.nil?
         server = Server.free_for_requests.first
         if server.nil?

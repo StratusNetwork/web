@@ -3,7 +3,6 @@
 ENV['OCN_ROLE'] = 'worker'
 require File.expand_path('../environment', __FILE__)
 
-Raven.capture
 
 module Factory
     include WorkerDelegate
