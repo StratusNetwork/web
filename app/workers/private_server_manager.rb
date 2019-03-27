@@ -63,6 +63,9 @@ class PrivateServerManager
     ApiSyncable.syncing do
       user = request.user
       server = Server.find_by(user: user)
+      if request.name != request.user.username
+        server = nil
+      end
       if server.nil?
         server = Server.free_for_requests.first
         if server.nil?
@@ -129,7 +132,7 @@ class PrivateServerManager
   end
 
   def safe_name(name)
-    "p" + name.gsub("_", "-") + "p"
+    name.gsub("_", "-")
   end
 
   def create_pod(server)
