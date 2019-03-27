@@ -129,7 +129,7 @@ class PrivateServerManager
   end
 
   def safe_name(name)
-    name.gsub("_", "-")
+    "p" + name.gsub("_", "-") + "p"
   end
 
   def create_pod(server)
