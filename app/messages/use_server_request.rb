@@ -8,6 +8,6 @@ class UseServerRequest < BaseMessage
     end
 
     def name
-        (server_name.nil?) ? user.username : server_name
+        (server_name.blank?) ? user.username : server_name
     end
 end
