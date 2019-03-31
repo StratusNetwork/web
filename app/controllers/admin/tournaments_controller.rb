@@ -32,7 +32,7 @@ module Admin
                 str += classifier + ":"
                 str += maps.join(",")
                 str += "\n"
-            end
+            end unless @tournament.map_classifications.blank?
             @classifications_string = str[0...-1]
         end
 
