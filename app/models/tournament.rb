@@ -142,6 +142,7 @@ class Tournament
         [:end, :registration_start, :registration_end].each do |field|
             self[field] = self[field].utc
         end
+        self.map_classifications = {} if map_classifications.nil?
     end
 
     # Unused legacy fields
