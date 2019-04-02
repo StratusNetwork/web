@@ -128,7 +128,7 @@ class UsersController < ApplicationController
         end
 
         if @stats.stat(:kills) >= 100000
-            Trophy['100k-kills'].give_to(@player)
+            Trophy['sorx4ing-beyond'].give_to(@player)
         end
 
         @trophy_count = @player.trophies.count
