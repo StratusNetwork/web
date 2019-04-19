@@ -263,7 +263,7 @@ GEM
     memoist (0.16.0)
     metaclass (0.0.4)
     mime-types (2.6.2)
-    mini_portile (0.6.1)
+    mini_portile2 (2.0.0)
     minitest (5.8.2)
     minitest-reporters (1.1.5)
       ansi
@@ -286,10 +286,10 @@ GEM
     netaddr (1.5.0)
     netrc (0.11.0)
     nio4r (2.3.1)
-    nokogiri (1.6.5)
-      mini_portile (~> 0.6.0)
-    nokogiri (1.6.5-x64-mingw32)
-      mini_portile (~> 0.6.0)
+    nokogiri (1.6.7)
+      mini_portile2 (~> 2.0.0.rc2)
+    nokogiri (1.6.7-x64-mingw32)
+      mini_portile2 (~> 2.0.0.rc2)
     oauth2 (1.4.0)
       faraday (>= 0.8, < 0.13)
       jwt (~> 1.0)
@@ -495,7 +495,7 @@ DEPENDENCIES
   mongoid (~> 5.0.0)
   net-http-pipeline
   netaddr (~> 1.5.0)
-  nokogiri
+  nokogiri (= 1.6.7)
   peek
   peek-git
   peek-performance_bar
@@ -532,4 +532,4 @@ DEPENDENCIES
   workflow_on_mongoid
 
 BUNDLED WITH
-   1.16.4
+   1.16.6
