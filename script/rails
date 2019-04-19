@@ -10,8 +10,9 @@ require File.expand_path('../../config/boot',  __FILE__)
 #     rails octc       # public website
 #     rails avatar     # avatar server
 #     rails api        # API
+#     rails api_public # public api
 
-if %w[octc avatar api].include? ARGV[0]
+if %w[octc avatar api api_public].include? ARGV[0]
     ENV['OCN_ROLE'] = ARGV[0]
     ARGV[0] = 'server'
 end
@@ -26,6 +27,9 @@ case ENV['OCN_ROLE']
     when 'api'
         port = 3010
         pid = 'tmp/pids/api.pid'
+    when 'api_public'
+        port = 3015
+        pid = 'tmp/pids/api_public.pid'
     else
         port = pid = nil
 end

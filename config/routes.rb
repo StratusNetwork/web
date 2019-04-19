@@ -7,6 +7,8 @@ routes = case PGM::Application.ocn_role
         %w{ api }
     when 'worker'
         []
+    when "api_public"
+        %w{ api_public }
     else
         raise "Weird OCN_ROLE: #{PGM::Application.ocn_role}"
 end
