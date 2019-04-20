@@ -8,19 +8,21 @@ class User
 
             # Array of flairs, in display order. Realms may be repeated.
             # [{realm:, text:}, {realm:, text:}, ...]
-            api_synthetic :minecraft_flair do
-                badge_groups.reverse.flat_map do |group|
-                    group.minecraft_flair.map do |realm, flair|
-                        {
-                            realm: realm,
-                            text: "#{ChatColor[flair.color]}#{flair.symbol}",
-                            priority: flair.priority || group.priority,
-                            visible_while_participating: flair.visible_while_participating
-                        }
-                    end
+            api_synthetic :minecraft_flair
+        end # included do
+
+        def minecraft_flair
+            badge_groups.reverse.flat_map do |group|
+                group.minecraft_flair.map do |realm, flair|
+                    {
+                        realm: realm,
+                        text: "#{ChatColor[flair.color]}#{flair.symbol}",
+                        priority: flair.priority || group.priority,
+                        visible_while_participating: flair.visible_while_participating
+                    }
                 end
             end
-        end # included do
+        end
 
         # Occasionally, a seemingly random user will have the group_id of their
         # first membership replaced by a newly created ObjectId that does not
