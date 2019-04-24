@@ -103,7 +103,7 @@ module Forem
 
         scope :announcements, -> {
             announcements = Forem::Forum.asc(:order).first
-            forum(announcements).with_posts.visible.order_by(pinned: -1, created_at: -1).hint(INDEX_forum_pinned_created)
+            forum(announcements).with_posts.visible.order_by(created_at: -1).hint(INDEX_forum_created)
         }
 
         attr_accessor :moderation_option
@@ -125,6 +125,7 @@ module Forem
         index(INDEX_forum_pinned_created = {forum_id: 1, pinned: -1, created_at: -1})
         index(INDEX_forum_user_unread = {forum_id: 1}.merge(INDEX_user_unread))
         index(INDEX_user_hidden_created = {user_id: 1, hidden: 1, created_at: -1})
+        index(INDEX_forum_created = {forum_id: 1, created_at: -1})
 
         validate :enforce_cooldown
 
