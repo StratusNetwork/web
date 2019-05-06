@@ -6,7 +6,7 @@
             %h2.strong= @team.name
         .col-md-2
             %br
-            .btn-group
+            .btn-group.pull-right
                 - if @leader
                     %a.btn.btn-default.btn-sm{:href => edit_team_path(@team)} Manage
                 - if current_user
