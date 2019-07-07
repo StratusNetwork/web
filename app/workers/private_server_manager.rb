@@ -23,14 +23,14 @@ class PrivateServerManager
     Server.owned.each do |s|
       next if s.num_online > 0 || !s.online?
 
-      if empty_times.include? s.bungee_name
-        if Time.now - empty_times[s.bungee_name] > 10.minutes
+      if empty_times.include? safe_name(s.bungee_name)
+        if Time.now - empty_times[safe_name(s.bungee_name)] > 10.minutes
           # Kill empty servers
           s.queue_restart(reason: "Automated server reset", priority: Server::Restart::Priority::HIGH)
-          empty_times.delete s.bungee_name
+          empty_times.delete safe_name(s.bungee_name)
         end
       else
-        empty_times[s.bungee_name] = Time.now
+        empty_times[safe_name(s.bungee_name)] = Time.now
       end
     end
 
@@ -51,7 +51,7 @@ class PrivateServerManager
             end
 
             begin
-              cluster.delete_service server.bungee_name, 'default'
+              cluster.delete_service safe_name(s.bungee_name), 'default'
             rescue
               # Service already gone
             end
@@ -82,7 +82,7 @@ class PrivateServerManager
 
   def server_online?(s)
     begin
-      p = cluster.get_pod(s.bungee_name, 'default').status.phase
+      p = cluster.get_pod(safe_name(s.bungee_name), 'default').status.phase
       p == "Running" || p == "Pending"
     rescue
       false
@@ -129,7 +129,7 @@ class PrivateServerManager
   end
 
   def safe_name(name)
-    name.gsub("_", "-")
+    name.gsub("_", "u")
   end
 
   def create_pod(server)
@@ -141,7 +141,7 @@ class PrivateServerManager
       labels: {
         role: 'private',
         type: 'minecraft',
-        user: server.bungee_name
+        user: name_safe
       },
       namespace: 'default'
     }
@@ -154,7 +154,7 @@ class PrivateServerManager
         }
       ],
       selector: {
-        user: server.bungee_name
+        user: name_safe
       }
     }
     begin
