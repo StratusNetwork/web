@@ -72,7 +72,7 @@ class PrivateServerManager
       end
       create_pod(server) unless server_online?(server)
       res = UseServerResponse.new(request: request)
-      res.server_name = server.bungee_name
+      res.server_name = server.name
       res.now = server.online?
       res
     end
@@ -94,7 +94,7 @@ class PrivateServerManager
     name = "Requestable-#{index}"
     Server.create(
       name: name,
-      bungee_name: name.downcase,
+      bungee_name: safe_name(name.downcase),
       ip: name.downcase,
       priority: 40 + index,
       online: false,
@@ -118,7 +118,7 @@ class PrivateServerManager
 
   def claim_server(server, user, server_name)
     name = server_name
-    bungee_name = server_name.downcase
+    bungee_name = safe_name(server_name.downcase)
     ip = safe_name(bungee_name)
     server.update(name: name,
       bungee_name: bungee_name,
