@@ -169,7 +169,7 @@ class PrivateServerManager
       labels: {
         role: 'private',
         type: 'minecraft',
-        user: server.bungee_name
+        user: name_safe
       },
       namespace: 'default'
     }
