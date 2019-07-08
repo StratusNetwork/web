@@ -72,7 +72,7 @@ class PrivateServerManager
       end
       create_pod(server) unless server_online?(server)
       res = UseServerResponse.new(request: request)
-      res.server_name = server.name
+      res.server_name = server.bungee_name
       res.now = server.online?
       res
     end
