@@ -31,6 +31,7 @@ PGM::Application.routes.draw do
     get '/discord' => redirect("https://discord.gg/Vxmq7Xp")
     get '/uhcrules' => redirect("https://stratus.network/forums/topics/5c01684c4eb4e8000100081f")
     get '/ranked' => redirect("https://stratus.network/forums/topics/5c96abc9a0fac40001001125")
+    get '/nostalgia' => redirect("https://stratus.network/forums/posts/5d4012c535aca200010004a9")
     get '/guides' => redirect("https://stratus.network/forums/58cdb02ef6e8a8525b00000d")
 
     resources :revisions
