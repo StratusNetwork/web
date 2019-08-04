@@ -28,10 +28,10 @@ PGM::Application.routes.draw do
     get '/emoji' => redirect('https://stratus.network/forums/posts/5a7f78de7b10af00010002f9')
     get '/mapmaking' => redirect('https://stratus.network/forums/58e16d72f6e8a83410000047')
     get '/conduct' => redirect('https://stratus.network/forums/topics/59b70619a2e3a9000100010f')
-    get '/apply' => redirect("https://stratus.network/forums/59ac44fba2e3a9000100004c")
     get '/discord' => redirect("https://discord.gg/Vxmq7Xp")
     get '/uhcrules' => redirect("https://stratus.network/forums/topics/5c01684c4eb4e8000100081f")
     get '/ranked' => redirect("https://stratus.network/forums/topics/5c96abc9a0fac40001001125")
+    get '/guides' => redirect("https://stratus.network/forums/58cdb02ef6e8a8525b00000d")
 
     resources :revisions
     resources :rules
