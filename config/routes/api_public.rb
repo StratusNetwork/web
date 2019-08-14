@@ -6,7 +6,13 @@ PGM::Application.routes.draw do
       collection do
         get "by_username/:username", action: :by_username
         get "by_uuid/:uuid", action: :by_uuid
-        get "check_ban/", action: :check_ban
+        get "check_ban/:uuid", action: :check_ban
+      end
+    end
+
+    resources :teams, except: [:destroy, :update, :show, :edit, :new, :create, :index] do
+      collection do
+        get "by_name/:name", action :by_name
       end
     end
   end

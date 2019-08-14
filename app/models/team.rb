@@ -90,6 +90,10 @@ class Team
         api_document(only: [:_id, :name, :name_normalized])
     end
 
+    def members_uuid
+        accepted_members.map{|m| m.user.uuid}
+    end
+
     after_initialize :normalize!
     before_validation :normalize!
     before_validation :ensure_leader_is_member
