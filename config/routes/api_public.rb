@@ -6,6 +6,7 @@ PGM::Application.routes.draw do
       collection do
         get "by_username/:username", action: :by_username
         get "by_uuid/:uuid", action: :by_uuid
+        get "check_ban/", action: :check_ban
       end
     end
   end
