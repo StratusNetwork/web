@@ -12,7 +12,7 @@ PGM::Application.routes.draw do
 
     resources :teams, except: [:destroy, :update, :show, :edit, :new, :create, :index] do
       collection do
-        get "by_name/:name", action :by_name
+        get "by_name/:name", action: :by_name
       end
     end
   end
