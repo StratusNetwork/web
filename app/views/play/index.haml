@@ -6,5 +6,7 @@
             %small Play anywhere, anytime
     - if @portal_infos.size > 1
         = render partial: 'multi_portal'
-    - else
+    - elsif @portal_infos.size == 1
         = render partial: 'single_portal'
+    - else
+        %h2.center No servers online.
