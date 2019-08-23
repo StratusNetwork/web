@@ -33,6 +33,8 @@ PGM::Application.routes.draw do
     get '/ranked' => redirect("https://stratus.network/forums/topics/5c96abc9a0fac40001001125")
     get '/nostalgia' => redirect("https://stratus.network/forums/posts/5d4012c535aca200010004a9")
     get '/guides' => redirect("https://stratus.network/forums/58cdb02ef6e8a8525b00000d")
+    get '/screenshare' => redirect("https://stratus.network/forums/topics/5d483c5926726200010002e6")
+    get '/ss' => redirect("https://stratus.network/forums/topics/5d483c5926726200010002e6")
 
     resources :revisions
     resources :rules
