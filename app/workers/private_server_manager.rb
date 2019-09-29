@@ -222,7 +222,7 @@ class PrivateServerManager
           volumeMounts: [
             {
               name: 'git',
-              subPath: 'maps-private'
+              subPath: 'maps-private',
               mountPath: '/minecraft/maps:ro'
             }
           ]
