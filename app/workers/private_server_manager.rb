@@ -140,7 +140,6 @@ class PrivateServerManager
       name: name_safe,
       labels: {
         role: 'private',
-        type: 'minecraft',
         user: name_safe
       },
       namespace: 'default'
@@ -168,15 +167,11 @@ class PrivateServerManager
       name: name_safe,
       labels: {
         role: 'private',
-        type: 'minecraft',
         user: name_safe
       },
       namespace: 'default'
     }
     pod.spec = {
-      nodeSelector: {
-        private: 'true'
-      },
       containers: [
         {
           name: 'minecraft',
@@ -226,7 +221,8 @@ class PrivateServerManager
           ],
           volumeMounts: [
             {
-              name: 'maps',
+              name: 'git',
+              subPath: 'maps-private'
               mountPath: '/minecraft/maps:ro'
             }
           ]
@@ -234,9 +230,9 @@ class PrivateServerManager
       ],
       volumes: [
         {
-          name: 'maps',
-          hostPath: {
-            path: '/storage/maps-private'
+          name: 'git',
+          persistentVolumeClaim: {
+            claimName: 'git'
           }
         }
       ],
