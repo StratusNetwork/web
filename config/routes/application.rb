@@ -35,6 +35,7 @@ PGM::Application.routes.draw do
     get '/guides' => redirect("https://stratus.network/forums/58cdb02ef6e8a8525b00000d")
     get '/screenshare' => redirect("https://stratus.network/forums/topics/5d483c5926726200010002e6")
     get '/ss' => redirect("https://stratus.network/forums/topics/5d483c5926726200010002e6")
+    get '/halloween' => redirect("https://stratus.network/forums/posts/5da3704082d529000100000b")
 
     resources :revisions
     resources :rules
