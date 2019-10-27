@@ -5,7 +5,7 @@ This is the code that powered the website and backend services of the former Ove
 
 Besides the removal of some branding and configuration data, it is more or less unmodified.
 It is probably not *directly* useful to third parties in its current state,
-but it may be help in understanding how the [ProjectAres](https://github.com/OvercastNetwork/ProjectAres) plugins work.
+but it may help in understanding how the [ProjectAres](https://github.com/OvercastNetwork/ProjectAres) plugins work.
 
 We are quite open to the idea of evolving this into something more generally useful.
 If you would like to contribute to this effort, talk to us in [Discord](https://discord.gg/6zGDEen).
