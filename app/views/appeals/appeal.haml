@@ -18,7 +18,7 @@
             %p If you disagree with the moderator’s decision, you can escalate an appeal to have it reviewed by a senior staff member, but this will delay the response time.
         .col-md-4
             %h4.strong Conduct in appeals
-            %p If your infraction was issued incorrectly, you should appeal it in a timely manner. Moderators are only required to obtain evidence for cheating bans, and this must only be retained for 28 days.
+            %p If your infraction was issued incorrectly, you should appeal it in a timely manner. Moderators are only required to obtain evidence for cheating bans, and this will only be retained for 28 days.
             %p If you lie in your appeal or are abusive towards our staff, your appeal will be denied and you may receive further punishment.
     %br
     .row
@@ -26,7 +26,7 @@
             - if user_signed_in?
                 - if !@can_appeal
                     %br
-                    .alert.alert-info.strong You don't have infractions to appeal or appeals to view
+                    .alert.alert-info.strong You don't have infractions to appeal or have any appeals to view.
                 %a.btn.btn-lg.btn-primary.strong{:href => (!@can_appeal ? "#" : new_appeal_path), :class => (@punishments == 0 ? "disabled" : "")} Ok, let's go &raquo;
             - else
                 %br
